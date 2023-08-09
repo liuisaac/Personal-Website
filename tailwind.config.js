@@ -13,7 +13,7 @@ export default {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
         rubik: ["Rubik", "sans-serif"],
-
+        inconsolata: ["Inconsolata", "monospace"],
       },
       screens: {
         se: "300px",

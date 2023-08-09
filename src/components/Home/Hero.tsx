@@ -93,7 +93,7 @@ function Points() {
       <pointsMaterial
         attach={"material"}
         map={imgTex}
-        color={0x00A4ED}
+        color={0x596CCE}
         size={0.7}
         sizeAttenuation
         transparent={false}
@@ -107,25 +107,51 @@ function Points() {
 
 function Boat() {
   const [boatHeight, setBoatHeight] = useState(0);
+  const [wobbling, setWobbling] = useState(false);
+  const [rotation, setRotation] = useState(0);
+  const [time, setTime] = useState(0);
   const gltf = useLoader(GLTFLoader, 'src/assets/Home/Hero/Three/benchy.glb');
+
+  function runSpin () {
+    if (!wobbling) {
+      setWobbling(true);
+    }
+  }
+
   const graph = useCallback((x: number, z: number) => {
     const circle = x ** 2 + z ** 2;
     return Math.sin(f * (circle - t)) * a * rippleFactor * (1 / rippleFactor * Math.E ** (-circle * f * rippleFactor)) ;
   }, [t, f, a])
-  // const rocking = (tplus: number) => {
-  //   const x 
-  //   return None;
-  // }
 
+  const rocker = useCallback((t: number) => {
+    const offset = t - 3; const slope = 1; const amplitude = 6.28; const bottom = 0.2;
+    let ans = ((amplitude + bottom) / (1 + Math.E ** (-slope * offset)) - bottom);
+    if(t > 12) {
+      ans = 0;
+      setWobbling(false);
+    }
+
+    setRotation(ans);
+  }, [t])
 
   useFrame(() => {
-    setBoatHeight(graph(0, 0) - (1 + a/2))
+    setBoatHeight(graph(0, 0) - (1 + a/2));
+
+    if (wobbling) {
+      rocker(time);
+      setTime(time + 0.15);
+    } else {
+      setTime(0);
+    }
+
+    //6.28
+    //3.54318885548 <- integralConst
   })
   return (
     <group 
   position={[0, boatHeight, 0]} 
-  rotation={[0.2, 0, 0.2]}
-  onClick={(() => console.log("a"))}
+  rotation={[0, rotation, 0]}
+  onClick={(() => runSpin())}
   
   >
       <primitive object={gltf.scene} />
@@ -182,7 +208,7 @@ function Floor() {
   return (
     <mesh position={[-150, -54, 0]} rotation={[0, 9.85, 0]}>
       <boxGeometry args={[1, 100, 1000]} />
-      <meshStandardMaterial color={new THREE.Color(-1, -1, -1)} />
+      <meshBasicMaterial color={new THREE.Color(0.017, 0.022, 0.036)} />
     </mesh>
   )
 }
@@ -200,8 +226,9 @@ function AnimationCanvas() {
       <ShootingStar /><ShootingStar /><ShootingStar />
 
       <ambientLight intensity={0.1}/>
-      <directionalLight color="cyan" position={[200, -100, 100]} intensity={2.7} />
+      <directionalLight color={[1, 1, 10]} position={[200, -100, 100]} intensity={3} />
       <directionalLight color="white" position={[200, -100, -500]} intensity={3} />
+      <directionalLight color="white" position={[-30, 100, 30]} intensity={3} />
       {/* <directionalLight color="white" position={[-200, 100, -500]} intensity={3} /> */}
 
     </Canvas>
@@ -209,31 +236,38 @@ function AnimationCanvas() {
 }
 
 const Hero = () => {
-
   return (
-    <div className='w-full h-full bg-primary text-white overflow-hidden relative'>
-      <div>HI THERE!</div>
+    <div className='w-full h-full bg-gray-800 text-white overflow-hidden relative'>
+      <div className='absolute w-full text-[19rem] font-inconsolata font-semibold 
+  items-center justify-center -mt-10 drop-shadow-[0_0px_5px_rgba(255,255,255,0.8)] opacity-80'>
+        isaac_liu
+      </div>
       <div className="w-full h-full flex items-center justify-start">
         <div className="w-full h-full">
           <AnimationCanvas />
         </div>
         
         <div className='flex flex-col w-1/32 items-start justify-center absolute'>
-          <div className='flex flex-col items-start text-[10rem] mt-[25vh] ml-[10vh] z-10 font-bold'>
-          <span></span>
-            <span>I'm Gook.</span>
-            <span className='text-3xl text-[#9B9B9B] font-semibold -mt-10 tracking-wider'>
-              Frontend Developer / Homeless / Boogyman
+          <div className='flex flex-col items-start text-5xl select-none opacity-80
+      mt-[35vh] ml-[10vh] z-10 font-inconsolata text-[#9B9B9B] font-semibold tracking-wider'>
+            <span className='-mt-10 my-12'>
+              {`> University Student`}
+            </span>
+            <span className='-mt-10 my-12'>
+              {`> Software Developer`}
+            </span>
+            <span className='-mt-10 my-12'>
+              {`> roboorobororob`}
             </span>
 
             {/* Social Links */}
             <div className='flex flex-row content-evenly justify-center items-center
-          h-14 w-[26rem] bg-black bg-opacity-20 rounded-full mt-4 space-x-10 backdrop-blur-[2px]'>
-              <img src={github} className='h-10 opacity-80 hover:cursor-pointer hover:scale-110 transition duration-100 ease-in-out'/>
-              <img src={youtube} className='h-10 opacity-80 hover:cursor-pointer hover:scale-110 transition duration-100 ease-in-out'/>
-              <img src={twitter} className='h-10 opacity-80 hover:cursor-pointer hover:scale-110 transition duration-100 ease-in-out'/>
-              <img src={linkedin} className='h-10 opacity-80 hover:cursor-pointer hover:scale-110 transition duration-100 ease-in-out'/>
-              <img src={mail} className='h-10 opacity-80 hover:cursor-pointer hover:scale-110 transition duration-100 ease-in-out'/>
+          h-14 w-[26rem] bg-black bg-opacity-50 rounded-full mt-4 space-x-10 backdrop-blur-[2px]'>
+              <img src={github} className='h-10 opacity-90 hover:cursor-pointer hover:scale-110 transition duration-100 ease-in-out'/>
+              <img src={youtube} className='h-10 opacity-90 hover:cursor-pointer hover:scale-110 transition duration-100 ease-in-out'/>
+              <img src={twitter} className='h-10 opacity-90 hover:cursor-pointer hover:scale-110 transition duration-100 ease-in-out'/>
+              <img src={linkedin} className='h-10 opacity-90 hover:cursor-pointer hover:scale-110 transition duration-100 ease-in-out'/>
+              <img src={mail} className='h-10 opacity-90 hover:cursor-pointer hover:scale-110 transition duration-100 ease-in-out'/>
             </div>
           </div>
         </div>
