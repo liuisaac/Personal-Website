@@ -29,7 +29,7 @@ const Hero = ({ ScrollPosition, SScrollPosition} : { ScrollPosition: number; SSc
                 >
                     <span className="-mt-10 my-12">{`> University Student`}</span>
                     <span className="-mt-10 my-12">{`> Software Developer`}</span>
-                    <span className="-mt-10">{`> roboorobororob`}</span>
+                    <span className="-mt-10">{`> No idea what to put here`}</span>
 
                     {/* Social Links */}
                     <div

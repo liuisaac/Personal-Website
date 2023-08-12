@@ -25,11 +25,11 @@ function ShootingStar() {
     const start = Math.random() * 500;
     let timer = 0;
     let curpos = origin;
-    let speed = 5;
+    let speed = 2;
     let t = 0;
     let a = 0.9;
     let b = Math.random();
-    let additionConstant = Math.random() * 2 + speed;
+    let additionConstant = Math.random() + speed;
 
     useFrame(() => {
         if (false) {

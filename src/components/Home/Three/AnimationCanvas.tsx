@@ -20,6 +20,7 @@ BoatWaves;
 
 //Styling
 import "../../../index.css";
+import { About_Me } from "..";
 
 function AnimationCanvas({ setScrollPosition} : { setScrollPosition: Function; }) {
     return (
@@ -30,15 +31,11 @@ function AnimationCanvas({ setScrollPosition} : { setScrollPosition: Function; }
                 rotation: [-0.5, 1.9, 0.5],
             }}
         >
-            <ScrollControls pages={1.5} damping={0.3} distance={0.1}>
+            <ScrollControls pages={1.5} damping={0.3}>
                 <Scroll>
                     <Floor />
                     <Star />
                     <Points SScrollPosition = {setScrollPosition}/>
-                    <ShootingStar />
-                    <ShootingStar />
-                    <ShootingStar />
-                    <ShootingStar />
                     <ShootingStar />
                     <ShootingStar />
                     <ShootingStar />
@@ -69,6 +66,11 @@ function AnimationCanvas({ setScrollPosition} : { setScrollPosition: Function; }
                         position={[-30, 100, 30]}
                         intensity={3}
                     />
+                </Scroll>
+                <Scroll html>
+                    <div className="w-screen h-screen mt-[100vh]">
+                        <About_Me />
+                    </div>
                 </Scroll>
             </ScrollControls>
             {/* <directionalLight color="white" position={[-200, 100, -500]} intensity={3} /> */}

@@ -11,7 +11,7 @@ const f = 0.0035; // frequency // HIGHER = higher frequency / faster bobbing, LO
 const rippleFactor = 0.03; // wave travel distance // HIGHER = less travel, LOWER = more travel
 // eslint-disable-next-line prefer-const
 let a = 1; // variable amplitude // isolated amplitude control
-const count = 300;
+const count = 150;
 
 function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
     const imgTex = useLoader(THREE.TextureLoader, wavepoint);
@@ -30,7 +30,7 @@ function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
         },
         [t, f, a]
     );
-    const sep = 1;
+    const sep = 1.8;
 
     //loop
     let positions = useMemo(() => {
@@ -86,13 +86,13 @@ function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
         <group>
             {/* Stars */}
             <Stars
-                radius={100}
+                radius={60}
                 depth={50}
-                count={2000}
+                count={1000}
                 factor={4}
                 saturation={0}
                 fade
-                speed={1}
+                speed={2}
             />
 
             {/* wavePoints */}
