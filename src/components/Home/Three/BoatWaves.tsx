@@ -16,7 +16,9 @@ const count = 150;
 function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
     const imgTex = useLoader(THREE.TextureLoader, wavepoint);
     const bufferRef = useRef<THREE.BufferAttribute | null>();
+    const [Previous, setPrevious] = useState(0);
     const distance = useScroll();
+
 
     const graph = useCallback(
         (x: number, z: number) => {
@@ -38,7 +40,7 @@ function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
 
         for (let xi = 0; xi < count; xi++) {
             for (let zi = 0; zi < count; zi++) {
-                if ((xi - count / 2) ** 2 + (zi - count / 2) ** 2 < 25000) {
+                if ((xi - count / 2) ** 2 + (zi - count / 2) ** 2 < 5000) {
                     let x = sep * (xi - count / 2);
                     let z = sep * (zi - count / 2);
                     let y = graph(x, z);
@@ -72,11 +74,13 @@ function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
         if (bufferRef && bufferRef.current) {
             bufferRef.current.needsUpdate = true;
         }
-
+        if (distance.offset < 0.2 && (Math.abs(distance.offset-Previous) > 0.05)) {
+            setPrevious(distance.offset)
+            SScrollPosition(distance.offset)
+        }
         // if (distance.offset > 0.3) {
         //     console.log("switch");
         // }
-        SScrollPosition(distance.offset);
         //Camera control
         // state.camera.position.set(120, 10 - scroll.offset * 20, 10)
         // console.log(10-scroll.offset);
@@ -129,7 +133,7 @@ function Boat() {
     const [rotation, setRotation] = useState(0);
     const [time, setTime] = useState(0);
     const gltf = useLoader(GLTFLoader, "src/assets/Home/Hero/Three/benchy.glb");
-
+    
     function runSpin() {
         if (!wobbling) {
             setWobbling(true);

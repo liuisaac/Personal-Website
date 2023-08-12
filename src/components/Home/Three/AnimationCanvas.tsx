@@ -8,6 +8,7 @@ import {
 import BoatWaves from "./BoatWaves";
 import Background from "./Background";
 
+
 const Points = BoatWaves.Points;
 const Boat = BoatWaves.Boat;
 
@@ -35,7 +36,7 @@ function AnimationCanvas({ setScrollPosition} : { setScrollPosition: Function; }
                 <Scroll>
                     <Floor />
                     <Star />
-                    <Points SScrollPosition = {setScrollPosition}/>
+                    <Points SScrollPosition={setScrollPosition}/>
                     <ShootingStar />
                     <ShootingStar />
                     <ShootingStar />
