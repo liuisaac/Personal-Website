@@ -65,7 +65,7 @@ function ShootingStar() {
 }
 function Floor() {
     return (
-        <mesh position={[-40, -102, 0]} rotation={[0, 9.85, 0]}>
+        <mesh position={[-100, -101, 0]} rotation={[0, 9.8, 0]}>
             <boxGeometry args={[1, 200, 1000]} />
             <meshBasicMaterial color={new THREE.Color(0.017, 0.022, 0.036)} />
         </mesh>

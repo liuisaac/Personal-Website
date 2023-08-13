@@ -90,9 +90,9 @@ function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
         <group>
             {/* Stars */}
             <Stars
-                radius={60}
-                depth={50}
-                count={1000}
+                radius={100}
+                depth={102}
+                count={2000}
                 factor={4}
                 saturation={0}
                 fade
