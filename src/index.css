@@ -32,31 +32,3 @@
 html,body{
     overflow-x: hidden;
 }
-background-image: linear-gradient(
-  180deg,
-  hsl(204deg 69% 15%) 13%,
-  hsl(201deg 38% 26%) 31%,
-  hsl(199deg 32% 33%) 40%,
-  hsl(198deg 30% 39%) 48%,
-  hsl(197deg 28% 44%) 54%,
-  hsl(196deg 27% 48%) 60%,
-  hsl(196deg 30% 53%) 65%,
-  hsl(194deg 21% 58%) 69%,
-  hsl(187deg 13% 62%) 73%,
-  hsl(154deg 6% 67%) 76%,
-  hsl(64deg 7% 69%) 80%,
-  hsl(43deg 18% 72%) 83%,
-  hsl(37deg 32% 75%) 85%,
-  hsl(33deg 31% 74%) 88%,
-  hsl(28deg 30% 73%) 90%,
-  hsl(24deg 29% 72%) 92%,
-  hsl(19deg 28% 71%) 93%,
-  hsl(14deg 27% 70%) 95%,
-  hsl(9deg 27% 69%) 96%,
-  hsl(7deg 22% 67%) 97%,
-  hsl(4deg 17% 66%) 98%,
-  hsl(359deg 12% 64%) 99%,
-  hsl(352deg 9% 62%) 99%,
-  hsl(338deg 6% 59%) 100%,
-  hsl(300deg 3% 57%) 100%
-);

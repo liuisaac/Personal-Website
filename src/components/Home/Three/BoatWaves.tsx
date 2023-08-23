@@ -11,7 +11,7 @@ const f = 0.0035; // frequency // HIGHER = higher frequency / faster bobbing, LO
 const rippleFactor = 0.03; // wave travel distance // HIGHER = less travel, LOWER = more travel
 // eslint-disable-next-line prefer-const
 let a = 1; // variable amplitude // isolated amplitude control
-const count = 150;
+const count = 100;
 
 function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
     const imgTex = useLoader(THREE.TextureLoader, wavepoint);
@@ -32,7 +32,7 @@ function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
         },
         [t, f, a]
     );
-    const sep = 1.8;
+    const sep = 3;
 
     //loop
     let positions = useMemo(() => {
@@ -40,7 +40,7 @@ function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
 
         for (let xi = 0; xi < count; xi++) {
             for (let zi = 0; zi < count; zi++) {
-                if ((xi - count / 2) ** 2 + (zi - count / 2) ** 2 < 5000) {
+                if ((xi - count / 2) ** 2 + (zi - count / 2) ** 2 < count*20) {
                     let x = sep * (xi - count / 2);
                     let z = sep * (zi - count / 2);
                     let y = graph(x, z);
@@ -65,8 +65,9 @@ function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
                 for (let zi = 0; zi < count; zi++) {
                     let x = sep * (xi - count / 2);
                     let z = sep * (zi - count / 2);
-
-                    positions[i + 1] = graph(x, z);
+                    if (x != 0 || z != 0) {
+                        positions[i + 1] = graph(x, z);
+                    }
                     i += 3;
                 }
             }
@@ -92,7 +93,7 @@ function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
             <Stars
                 radius={100}
                 depth={102}
-                count={2000}
+                count={500}
                 factor={4}
                 saturation={0}
                 fade

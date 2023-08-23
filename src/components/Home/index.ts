@@ -1,7 +1,7 @@
 import Hero from "./Hero";
 import About_Me from "./About_Me";
-import AnimationCanvas from "./Three/AnimationCanvas";
+import Skills from "./Skills";
 
 export {
-    Hero, About_Me, AnimationCanvas
+    Hero, About_Me, Skills
 };

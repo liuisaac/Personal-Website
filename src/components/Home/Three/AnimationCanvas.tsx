@@ -12,16 +12,14 @@ import Background from "./Background";
 const Points = BoatWaves.Points;
 const Boat = BoatWaves.Boat;
 
-const Star = Background.Star;
-const ShootingStar = Background.ShootingStar;
-const Floor = Background.Floor;
+const Post = Background.Post;
 
 
 BoatWaves;
 
 //Styling
 import "../../../index.css";
-import { About_Me } from "..";
+import { Skills, About_Me } from "..";
 
 function AnimationCanvas({ setScrollPosition} : { setScrollPosition: Function; }) {
     return (
@@ -31,17 +29,13 @@ function AnimationCanvas({ setScrollPosition} : { setScrollPosition: Function; }
                 fov: 45,
                 rotation: [-0.5, 1.9, 0.5],
             }}
+            frameloop="demand"
         >
-            <ScrollControls pages={1.5} damping={0.3}>
+            <ScrollControls pages={3} damping={0.3} maxSpeed={1}>
                 <Scroll>
-                    <Floor />
-                    <Star />
+                    {/* <Floor /> */}
+                    <Post />
                     <Points SScrollPosition={setScrollPosition}/>
-                    <ShootingStar />
-                    <ShootingStar />
-                    <ShootingStar />
-                    <ShootingStar />
-                    <ShootingStar />
                     <PresentationControls
                         snap={false}
                         polar={[0, 0]}
@@ -51,7 +45,6 @@ function AnimationCanvas({ setScrollPosition} : { setScrollPosition: Function; }
                         <Boat />
                     </PresentationControls>
 
-                    <ambientLight intensity={0.1} />
                     <directionalLight
                         color={[1, 1, 10]}
                         position={[200, -100, 100]}
@@ -69,7 +62,11 @@ function AnimationCanvas({ setScrollPosition} : { setScrollPosition: Function; }
                     />
                 </Scroll>
                 <Scroll html>
-                    <div className="w-screen h-screen mt-[100vh]">
+                    <div className="w-screen h-[20vh] bg-gradient-to-b from-transparent from-0% via-[#1F2938]/50 via-60% to-[#1F2938]/100 to-95% mt-[100vh]"></div>
+                    <div className="w-screen h-screen bg-opacity-20">
+                        <Skills />
+                    </div>
+                    <div className="w-screen h-screen">
                         <About_Me />
                     </div>
                 </Scroll>

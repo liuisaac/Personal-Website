@@ -4,13 +4,9 @@ import { useFrame } from "@react-three/fiber";
 import { Trail } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
-function Star() {
+function Post() {
     return (
-        <group position={[-80, 80, -50]}>
-            <mesh>
-                <sphereGeometry args={[0.04]} />
-                <meshBasicMaterial color={[15, 10, 20]} toneMapped={false} />
-            </mesh>
+        <group>
             <EffectComposer>
                 <Bloom mipmapBlur luminanceThreshold={5} />
             </EffectComposer>
@@ -72,4 +68,4 @@ function Floor() {
     );
 }
 
-export default { Star, ShootingStar, Floor };
+export default { Post, ShootingStar, Floor };
