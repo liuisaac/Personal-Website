@@ -22,7 +22,7 @@ const Hero = ({ ScrollPosition, SScrollPosition} : { ScrollPosition: number; SSc
             </div>
 
             {/* Tags */}
-            <div className={`flex flex-col w-1/32 items-start justify-center absolute z-10 transition duration-300 ease-in-out ${( ScrollPosition > 0.05 ) ? "opacity-0" : "opacity-100"}`}>
+            <div className={`flex-col w-1/32 items-start justify-center absolute z-10 transition duration-300 ease-in-out ${( ScrollPosition > 0.05 ) ? "opacity-0" : "opacity-100"} ${( ScrollPosition > 0.1 ) ? "hidden" : "flex"}`}>
                 <div
                     className="flex flex-col items-start justify-start text-6xl select-none opacity-80
       mt-[48vh] ml-[12vh] font-inconsolata text-[#9B9B9B] font-semibold tracking-wider"

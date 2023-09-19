@@ -1,5 +1,5 @@
 import Hero from "./Hero";
-import About_Me from "./About_Me";
+import About_Me from "./About_Me/About_Me";
 import Skills from "./Skills";
 
 export {

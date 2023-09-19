@@ -7,7 +7,10 @@ import mail from '../assets/Home/Hero/Socials/mail.svg';
 import youtube from '../assets/Home/Hero/Socials/youtube.svg';
 import twitter from '../assets/Home/Hero/Socials/twitter.svg';
 
+//About Me
+
+
 //EXPORTS
 export {
-    wavepoint, instagram, linkedin, mail, youtube, github, twitter
+    wavepoint, instagram, linkedin, mail, youtube, github, twitter,
 }

@@ -12,19 +12,19 @@
 
 /* width */
 ::-webkit-scrollbar {
-    width:15px;
+    width: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #6d6d6d;
+    background: #000000;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: rgb(36, 40, 43);
-    border: 2px solid #6d6d6d;
-    border-radius: 4px;
+    background: rgb(200, 200, 200);
+    border: 2px solid #000000;
+    border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
     transition: 200ms ease-in-out;

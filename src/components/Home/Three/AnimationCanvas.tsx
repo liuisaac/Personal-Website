@@ -63,11 +63,11 @@ function AnimationCanvas({ setScrollPosition} : { setScrollPosition: Function; }
                 </Scroll>
                 <Scroll html>
                     <div className="w-screen h-[20vh] bg-gradient-to-b from-transparent from-0% via-[#1F2938]/50 via-60% to-[#1F2938]/100 to-95% mt-[100vh]"></div>
-                    <div className="w-screen h-screen bg-opacity-20">
-                        <Skills />
-                    </div>
                     <div className="w-screen h-screen">
                         <About_Me />
+                    </div>
+                    <div className="w-screen h-screen bg-opacity-20">
+                        <Skills />
                     </div>
                 </Scroll>
             </ScrollControls>
