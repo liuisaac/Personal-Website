@@ -11,13 +11,13 @@ const Wave = () => {
         else {return value}
     }
 
-    function setAllTranslations() {
-        if (Translation === tTranslation) {setpTranslation(Translation); settTranslation(Translation + 950);}
+    function setAllTranslations(distance : number, bool : boolean) {
+        if (Translation === tTranslation && bool) {setpTranslation(Translation); settTranslation(Translation + distance);}
     }
 
     useEffect(() => {
         if (tTranslation != Translation) {
-            setT(t + 0.00018)
+            setT(t + 0.0005)
             setTranslation(pTranslation + (tTranslation-pTranslation) * calcSig(t))
             console.log(t)
         }
@@ -27,15 +27,46 @@ const Wave = () => {
     }, [tTranslation, Translation])
     return (
         <div className="flex flex-row h-full w-screen justify-center items-center ">
-            <div 
-                className={`flex flex-row w-screen h-1/2
-                bg-[url("../src/assets/Home/About_Me/Sine.svg")] bg-repeat-round bg-contain hover:cursor-pointer
-                transition ease-in-out relative`}
-                style={{backgroundPositionX: -Translation}}/>
-            <div className="mb-10 absolute" style={{right: `${Translation / 10}%`}} onClick={() => setAllTranslations()}>
-                <div><Track/></div>
+            {/* Track */}
+            <div className="flex flex-row h-full w-screen justify-center items-center absolute">
+                <div 
+                    className={`flex flex-row w-screen h-1/2
+                    bg-[url("../src/assets/Home/About_Me/Sine.svg")] bg-repeat-x bg-[center_top_50vh] hover:cursor-pointer
+                    transition ease-in-out relative`}
+                    style={{backgroundPositionX: -(Translation * 1.0)}}/>
+                <div 
+                    className={`flex flex-row w-screen h-1/2
+                    bg-[url("../src/assets/Home/About_Me/Sine.svg")] bg-repeat-x bg-[center_top_75vh] hover:cursor-pointer
+                    transition ease-in-out absolute`}
+                    style={{backgroundPositionX: -(Translation * 2)}}/>
+                <div 
+                    className={`flex flex-row w-screen h-1/2
+                    bg-[url("../src/assets/Home/About_Me/Sine.svg")] bg-repeat-x bg-[center_bottom_40vh] hover:cursor-pointer
+                    transition ease-in-out absolute`}
+                    style={{backgroundPositionX: -(Translation * 3)}}/>
+
+                <div className="mb-10 absolute" style={{right: `${Translation / 10}%`}}>
+                    <div><Track/></div>
+                </div>
+            </div>
+            <div className="w-screen h-0 mt-[10vh] grid grid-cols-2 relative overflow-visible">
+                <div className="flex flex-row items-center justify-start h-0 overflow-visible">
+                    <div className={`bg-opacity-20 select-none ${(Translation > -900) ? "bg-white border-white hover:cursor-pointer hover:scale-[0.9]" : "bg-gray-500 border-black hover:cursor-not-allowed"} border-4 backdrop-blur-sm rounded-full ml-[5vh] transition ease-in-out duration-200`}
+                        onClick={() => setAllTranslations(-950, (Translation > -900))}>
+                        <img src={(Translation > -900)?`../src/assets/Home/About_Me/Controls/Left.svg`
+                        : `../src/assets/Home/About_Me/Controls/ELeft.svg`}  className={`-ml-2 z-50 pointer-events-auto`}/>
+                    </div>
+                </div>
+                <div className="flex flex-row items-center justify-end h-0 overflow-visible">
+                    <div className={`bg-opacity-20 select-none ${(Translation < -50) ? "bg-white border-white hover:cursor-pointer hover:scale-[0.9]" : "bg-gray-500 border-black hover:cursor-not-allowed"} border-4 backdrop-blur-sm rounded-full mr-[5vh] transition ease-in-out duration-200`}
+                        onClick={() => setAllTranslations(950, (Translation < -50))}>
+                        <img src={(Translation < -50)?`../src/assets/Home/About_Me/Controls/Right.svg`
+                        : `../src/assets/Home/About_Me/Controls/ERight.svg`} className={`-mr-2 z-50 pointer-events-none`}/>
+                    </div>
+                </div>
             </div>
         </div>
+        
     );
 };
 
