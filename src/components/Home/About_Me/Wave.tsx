@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Track from "./Track";
+import { ELeft, Left, ERight, Right } from "../../../assets";
+
 const Wave = () => {
     const [Translation, setTranslation] = useState(-950);
     const [tTranslation, settTranslation] = useState(-950);
@@ -53,15 +55,13 @@ const Wave = () => {
                 <div className="flex flex-row items-center justify-start h-0 overflow-visible">
                     <div className={`bg-opacity-20 select-none ${(Translation > -900) ? "bg-white border-white hover:cursor-pointer hover:scale-[0.9]" : "bg-gray-500 border-black hover:cursor-not-allowed"} border-4 backdrop-blur-sm rounded-full ml-[5vh] transition ease-in-out duration-200`}
                         onClick={() => setAllTranslations(-950, (Translation > -900))}>
-                        <img src={(Translation > -900)?`../src/assets/Home/About_Me/Controls/Left.svg`
-                        : `../src/assets/Home/About_Me/Controls/ELeft.svg`}  className={`-ml-2 z-50 pointer-events-auto`}/>
+                        <img src={(Translation > -900) ? Left : ELeft}  className={`-ml-2 z-50 pointer-events-auto`}/>
                     </div>
                 </div>
                 <div className="flex flex-row items-center justify-end h-0 overflow-visible">
                     <div className={`bg-opacity-20 select-none ${(Translation < -50) ? "bg-white border-white hover:cursor-pointer hover:scale-[0.9]" : "bg-gray-500 border-black hover:cursor-not-allowed"} border-4 backdrop-blur-sm rounded-full mr-[5vh] transition ease-in-out duration-200`}
                         onClick={() => setAllTranslations(950, (Translation < -50))}>
-                        <img src={(Translation < -50)?`../src/assets/Home/About_Me/Controls/Right.svg`
-                        : `../src/assets/Home/About_Me/Controls/ERight.svg`} className={`-mr-2 z-50 pointer-events-none`}/>
+                        <img src={(Translation < -50) ? Right : ERight} className={`-mr-2 z-50 pointer-events-none`}/>
                     </div>
                 </div>
             </div>

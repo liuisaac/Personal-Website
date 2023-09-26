@@ -133,7 +133,7 @@ function Boat() {
     const [wobbling, setWobbling] = useState(false);
     const [rotation, setRotation] = useState(0);
     const [time, setTime] = useState(0);
-    const gltf = useLoader(GLTFLoader, "src/assets/Home/Hero/Three/benchy.glb");
+    const gltf = useLoader(GLTFLoader, "./benchy.glb");
     
     function runSpin() {
         if (!wobbling) {
