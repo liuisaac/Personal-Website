@@ -19,7 +19,7 @@ const Wave = () => {
 
     useEffect(() => {
         if (tTranslation != Translation) {
-            setT(t + 0.0003)
+            setT(t + 0.0002)
             setTranslation(pTranslation + (tTranslation-pTranslation) * calcSig(t))
             console.log(t)
         }
