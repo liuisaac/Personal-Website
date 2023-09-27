@@ -28,30 +28,30 @@ const Wave = () => {
         }
     }, [tTranslation, Translation])
     return (
-        <div className="flex flex-row h-full w-screen justify-center items-center ">
+        <div className="flex flex-row h-full justify-center items-center rotate-12 w-screen">
             {/* Track */}
             <div className="flex flex-row h-full w-screen justify-center items-center absolute">
                 <div 
                     className={`flex flex-row w-screen h-1/2
-                    bg-[url("../src/assets/Home/About_Me/Sine.svg")] bg-repeat-x bg-[center_top_50vh] hover:cursor-pointer
-                    transition ease-in-out relative`}
+                    bg-[url("../src/assets/Home/About_Me/Sine.svg")] bg-repeat-x bg-[center_bottom_15vh] hover:cursor-pointer
+                    transition ease-in-out relative overflow-visible`}
                     style={{backgroundPositionX: -(Translation * 1.0)}}/>
                 <div 
                     className={`flex flex-row w-screen h-1/2
-                    bg-[url("../src/assets/Home/About_Me/Sine.svg")] bg-repeat-x bg-[center_top_75vh] hover:cursor-pointer
+                    bg-[url("../src/assets/Home/About_Me/Sine.svg")] bg-repeat-x bg-[center_bottom_10vh] hover:cursor-pointer
                     transition ease-in-out absolute`}
-                    style={{backgroundPositionX: -(Translation * 2)}}/>
+                    style={{backgroundPositionX: -(Translation * 1.68)}}/>
                 <div 
                     className={`flex flex-row w-screen h-1/2
-                    bg-[url("../src/assets/Home/About_Me/Sine.svg")] bg-repeat-x bg-[center_bottom_40vh] hover:cursor-pointer
+                    bg-[url("../src/assets/Home/About_Me/Sine.svg")] bg-repeat-x bg-[center_bottom_5vh] hover:cursor-pointer
                     transition ease-in-out absolute`}
-                    style={{backgroundPositionX: -(Translation * 3)}}/>
+                    style={{backgroundPositionX: -(Translation * 3.05)}}/>
 
                 <div className="mb-10 absolute" style={{right: `${Translation / 10}%`}}>
                     <div><Track/></div>
                 </div>
             </div>
-            <div className="w-screen h-0 mt-[10vh] grid grid-cols-2 relative overflow-visible">
+            <div className="w-screen h-0 mt-[10vh] grid grid-cols-2 relative overflow-visible -rotate-6">
                 <div className="flex flex-row items-center justify-start h-0 overflow-visible">
                     <div className={`bg-opacity-20 select-none ${(Translation > -900) ? "bg-white border-white hover:cursor-pointer hover:scale-[0.9]" : "bg-gray-500 border-black hover:cursor-not-allowed"} border-4 backdrop-blur-sm rounded-full ml-[5vh] transition ease-in-out duration-200`}
                         onClick={() => setAllTranslations(-950, (Translation > -900))}>

@@ -39,7 +39,7 @@ function AnimationCanvas({ setScrollPosition} : { setScrollPosition: Function; }
                     <PresentationControls
                         snap={false}
                         polar={[0, 0]}
-                        speed={10}
+                        speed={20}
                         config={{ mass: 1, tension: 2, friction: 17 }}
                     >
                         <Boat />
@@ -62,7 +62,7 @@ function AnimationCanvas({ setScrollPosition} : { setScrollPosition: Function; }
                     />
                 </Scroll>
                 <Scroll html>
-                    <div className="w-screen h-[20vh] bg-gradient-to-b from-transparent from-0% via-[#1F2938]/50 via-60% to-[#1F2938]/100 to-95% mt-[100vh]"></div>
+                    <div className="w-screen h-[20vh] bg-gradient-to-b from-transparent from-0% via-[#111828]/50 via-60% to-[#111828]/100 to-95% mt-[100vh]"></div>
                     <div className="w-screen h-screen">
                         <About_Me />
                     </div>

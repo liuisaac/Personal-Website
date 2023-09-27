@@ -7,11 +7,11 @@ import { wavepoint } from "../../../assets";
 import "../../../index.css";
 
 let t = 0; // time // controls the speed of the animation
-const f = 0.0035; // frequency // HIGHER = higher frequency / faster bobbing, LOWER = loewr frequency / slower bobbing
-const rippleFactor = 0.03; // wave travel distance // HIGHER = less travel, LOWER = more travel
+const f = 0.0025; // frequency // HIGHER = higher frequency / faster bobbing, LOWER = loewr frequency / slower bobbing
+const rippleFactor = 0.05; // wave travel distance // HIGHER = less travel, LOWER = more travel
 // eslint-disable-next-line prefer-const
-let a = 1; // variable amplitude // isolated amplitude control
-const count = 100;
+let a = 1.5; // variable amplitude // isolated amplitude control
+const count = 40;
 
 function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
     const imgTex = useLoader(THREE.TextureLoader, wavepoint);
@@ -32,7 +32,7 @@ function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
         },
         [t, f, a]
     );
-    const sep = 3;
+    const sep = 6;
 
     //loop
     let positions = useMemo(() => {
@@ -40,7 +40,7 @@ function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
 
         for (let xi = 0; xi < count; xi++) {
             for (let zi = 0; zi < count; zi++) {
-                if ((xi - count / 2) ** 2 + (zi - count / 2) ** 2 < count*20) {
+                if ((xi - count / 2) ** 2 + (zi - count / 2) ** 2 < 300) {
                     let x = sep * (xi - count / 2);
                     let z = sep * (zi - count / 2);
                     let y = graph(x, z);
@@ -83,7 +83,7 @@ function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
         //     console.log("switch");
         // }
         //Camera control
-        // state.camera.position.set(120, 10 - scroll.offset * 20, 10)
+        //state.camera.position.set(120, 10 - scroll.offset * 20, 10)
         // console.log(10-scroll.offset);
     });
 
@@ -117,7 +117,7 @@ function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
                     attach={"material"}
                     map={imgTex}
                     color={0x596cce}
-                    size={0.7}
+                    size={1}
                     sizeAttenuation
                     transparent={false}
                     alphaTest={0.5}
@@ -135,11 +135,6 @@ function Boat() {
     const [time, setTime] = useState(0);
     const gltf = useLoader(GLTFLoader, "./benchy.glb");
     
-    function runSpin() {
-        if (!wobbling) {
-            setWobbling(true);
-        }
-    }
 
     const graph = useCallback(
         (x: number, z: number) => {
@@ -190,7 +185,6 @@ function Boat() {
         <group
             position={[0, boatHeight, 0]}
             rotation={[0, rotation, 0]}
-            onClick={() => runSpin()}
         >
             <primitive object={gltf.scene} />
         </group>
