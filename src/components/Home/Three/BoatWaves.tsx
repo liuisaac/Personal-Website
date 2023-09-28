@@ -128,12 +128,12 @@ function Points({ SScrollPosition} : { SScrollPosition: Function; }) {
     );
 }
 
-function Boat() {
+function Boat({path} : {path : string}) {
     const [boatHeight, setBoatHeight] = useState(0);
     const [wobbling, setWobbling] = useState(false);
     const [rotation, setRotation] = useState(0);
     const [time, setTime] = useState(0);
-    const gltf = useLoader(GLTFLoader, "./benchy.glb");
+    const gltf = useLoader(GLTFLoader, path);
     
 
     const graph = useCallback(
@@ -191,5 +191,18 @@ function Boat() {
     );
 }
 
+function Hober({path} : {path : string}) {
+    const gltf = useLoader(GLTFLoader, path);
 
-export default { Points, Boat };
+    return (
+        <group
+            position={[0, 0, 0]}
+            rotation={[0, 0, 0]}
+        >
+            <primitive object={gltf.scene}/>
+        </group>
+    );
+}
+
+
+export default { Points, Boat, Hober };

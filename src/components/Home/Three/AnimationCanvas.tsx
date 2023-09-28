@@ -12,6 +12,7 @@ import Background from "./Background";
 const Points = BoatWaves.Points;
 const Boat = BoatWaves.Boat;
 
+
 const Post = Background.Post;
 
 
@@ -29,9 +30,8 @@ function AnimationCanvas({ setScrollPosition} : { setScrollPosition: Function; }
                 fov: 45,
                 rotation: [-0.5, 1.9, 0.5],
             }}
-            frameloop="demand"
         >
-            <ScrollControls pages={3} damping={0.3} maxSpeed={1}>
+            <ScrollControls pages={3.5} damping={0.3} maxSpeed={0.6}>
                 <Scroll>
                     {/* <Floor /> */}
                     <Post />
@@ -42,7 +42,7 @@ function AnimationCanvas({ setScrollPosition} : { setScrollPosition: Function; }
                         speed={20}
                         config={{ mass: 1, tension: 2, friction: 17 }}
                     >
-                        <Boat />
+                        <Boat path={"./benchy.glb"}/>
                     </PresentationControls>
 
                     <directionalLight
@@ -62,7 +62,8 @@ function AnimationCanvas({ setScrollPosition} : { setScrollPosition: Function; }
                     />
                 </Scroll>
                 <Scroll html>
-                    <div className="w-screen h-[20vh] bg-gradient-to-b from-transparent from-0% via-[#111828]/50 via-60% to-[#111828]/100 to-95% mt-[100vh]"></div>
+                    <div className="w-screen h-[20vh] bg-gradient-to-b 
+                        from-transparent from-0% via-[#111828]/50 via-60% to-[#111828]/100 to-95% mt-[100vh]"/>
                     <div className="w-screen h-screen">
                         <About_Me />
                     </div>
