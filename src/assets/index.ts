@@ -8,6 +8,8 @@ import mail from '../assets/Home/Hero/Socials/mail.svg';
 import youtube from '../assets/Home/Hero/Socials/youtube.svg';
 import twitter from '../assets/Home/Hero/Socials/twitter.svg';
 
+import mousedown from '../assets/Home/Hero/MouseDown.svg';
+
 //About Me
 
 import Activities from '../assets/Home/About_Me/Cards/Activities.svg';
@@ -27,7 +29,7 @@ import Right from '../assets/Home/About_Me/Controls/Right.svg';
 import Sine from '../assets/Home/About_Me/Sine.svg';
 //EXPORTS
 export {
-    wavepoint, instagram, linkedin, mail, youtube, github, twitter,
+    wavepoint, instagram, linkedin, mail, youtube, github, twitter, mousedown,
     Activities, Clubs, Education, Empty, Favorites, Interests, Music, Resume, Stats, 
     ELeft, Left, ERight, Right, 
     Sine,
