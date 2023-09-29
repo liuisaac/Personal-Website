@@ -5,6 +5,9 @@ export default {
   ],
   theme: {
     extend: {
+      animation: {
+        'spin-slow': 'spin 45s linear infinite',
+      },
       colors: {
         primary: "#161616",
         secondary: "#00f6ff",

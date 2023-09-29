@@ -27,11 +27,16 @@ import Left from '../assets/Home/About_Me/Controls/Left.svg';
 import ERight from '../assets/Home/About_Me/Controls/ERight.svg';
 import Right from '../assets/Home/About_Me/Controls/Right.svg';
 import Sine from '../assets/Home/About_Me/Sine.svg';
+
+//Skills
+import halo from '../assets/Home/Hero/Skills/halo.svg';
+
 //EXPORTS
 export {
     wavepoint, instagram, linkedin, mail, youtube, github, twitter, mousedown,
     Activities, Clubs, Education, Empty, Favorites, Interests, Music, Resume, Stats, 
     ELeft, Left, ERight, Right, 
     Sine,
+    halo,
 
 }
