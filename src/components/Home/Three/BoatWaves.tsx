@@ -188,9 +188,6 @@ function Points({ SScrollPosition }: { SScrollPosition: Function }) {
 
 function Boat({ path }: { path: string }) {
     const [boatHeight, setBoatHeight] = useState(0);
-    const [wobbling, setWobbling] = useState(false);
-    const [rotation, setRotation] = useState(0);
-    const [time, setTime] = useState(0);
     const gltf = useLoader(GLTFLoader, path);
 
     const graph = useCallback(
@@ -206,40 +203,13 @@ function Boat({ path }: { path: string }) {
         [t, f, a]
     );
 
-    const rocker = useCallback(
-        (t: number) => {
-            const offset = t - 3;
-            const slope = 1;
-            const amplitude = 6.28;
-            const bottom = 0.2;
-            let ans =
-                (amplitude + bottom) / (1 + Math.E ** (-slope * offset)) -
-                bottom;
-            if (t > 12) {
-                ans = 0;
-                setWobbling(false);
-            }
-
-            setRotation(ans);
-        },
-        [t]
-    );
-
     useFrame(() => {
         setBoatHeight(graph(0, 0) - (1 + a / 2));
-
-        if (wobbling) {
-            rocker(time);
-            setTime(time + 0.15);
-        } else {
-            setTime(0);
-        }
-
         //6.28
         //3.54318885548 <- integralConst
     });
     return (
-        <group position={[0, boatHeight, 0]} rotation={[0, rotation, 0]}>
+        <group position={[0, boatHeight, 0]} rotation={[0, 0, 0]}>
             <primitive object={gltf.scene} />
         </group>
     );

@@ -40,8 +40,8 @@ function AnimationCanvas({
                     <PresentationControls
                         snap={false}
                         polar={[0, 0]}
-                        speed={0.8}
-                        config={{ mass: 0, tension: 0.1, friction: 0.1 }}
+                        speed={3}
+                        config={{ mass: 0.01, tension: 0.1, friction: 0.1 }}
                     >
                         <Boat path={"./benchy.glb"} />
                     </PresentationControls>
