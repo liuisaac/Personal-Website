@@ -2,19 +2,16 @@ import { Canvas } from "@react-three/fiber";
 import {
     PresentationControls,
     Scroll,
-    ScrollControls
+    ScrollControls,
 } from "@react-three/drei";
 
 import BoatWaves from "./BoatWaves";
 import Background from "./Background";
 
-
 const Points = BoatWaves.Points;
 const Boat = BoatWaves.Boat;
 
-
 const Post = Background.Post;
-
 
 BoatWaves;
 
@@ -22,7 +19,11 @@ BoatWaves;
 import "../../../index.css";
 import { Skills, About_Me } from "..";
 
-function AnimationCanvas({ setScrollPosition} : { setScrollPosition: Function; }) {
+function AnimationCanvas({
+    setScrollPosition,
+}: {
+    setScrollPosition: Function;
+}) {
     return (
         <Canvas
             camera={{
@@ -35,14 +36,14 @@ function AnimationCanvas({ setScrollPosition} : { setScrollPosition: Function; }
                 <Scroll>
                     {/* <Floor /> */}
                     <Post />
-                    <Points SScrollPosition={setScrollPosition}/>
+                    <Points SScrollPosition={setScrollPosition} />
                     <PresentationControls
                         snap={false}
                         polar={[0, 0]}
-                        speed={20}
-                        config={{ mass: 1, tension: 2, friction: 17 }}
+                        speed={0.8}
+                        config={{ mass: 0, tension: 0.1, friction: 0.1 }}
                     >
-                        <Boat path={"./benchy.glb"}/>
+                        <Boat path={"./benchy.glb"} />
                     </PresentationControls>
 
                     <directionalLight
@@ -62,8 +63,10 @@ function AnimationCanvas({ setScrollPosition} : { setScrollPosition: Function; }
                     />
                 </Scroll>
                 <Scroll html>
-                    <div className="w-screen h-[20vh] bg-gradient-to-b 
-                        from-transparent from-0% via-[#111828]/50 via-60% to-[#111828]/100 to-95% mt-[100vh]"/>
+                    <div
+                        className="w-screen h-[20vh] bg-gradient-to-b 
+                        from-transparent from-0% via-[#111828]/50 via-60% to-[#111828]/100 to-95% mt-[100vh]"
+                    />
                     <div className="w-screen h-screen">
                         <About_Me />
                     </div>

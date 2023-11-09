@@ -52,9 +52,9 @@ const Hero = ({
                     className="flex flex-col items-start justify-start text-6xl select-none opacity-80
       mt-[48vh] ml-[12vh] font-inconsolata text-[#9B9B9B] font-semibold tracking-wider"
                 >
-                    <span className={`-mt-10 my-12 opacity-40 hover:opacity-80 transition duration-150 ${ScrollPosition > 0.05 ? "pointer-events-none" : "pointer-events-auto"}`}>{`> BSc. Student @ UBC`}</span>
-                    <span className={`-mt-10 my-12 opacity-40 hover:opacity-80 transition duration-150 ${ScrollPosition > 0.05 ? "pointer-events-none" : "pointer-events-auto"}`}>{`> Software Developer`}</span>
-                    <span className={`-mt-10       opacity-40 hover:opacity-80 transition duration-150 ${ScrollPosition > 0.05 ? "pointer-events-none" : "pointer-events-auto"}`}>{`> Tech Enthusiast`}</span>
+                    <span className={`-mt-10 my-12 opacity-40 hover:opacity-80 transition duration-150 pointer-events-none ${ScrollPosition > 0.05 ? "pointer-events-none" : "pointer-events-none"}`}>{`> BSc. Student @ UBC`}</span>
+                    <span className={`-mt-10 my-12 opacity-40 hover:opacity-80 transition duration-150 pointer-events-none ${ScrollPosition > 0.05 ? "pointer-events-none" : "pointer-events-none"}`}>{`> Software Developer`}</span>
+                    <span className={`-mt-10       opacity-40 hover:opacity-80 transition duration-150 pointer-events-none ${ScrollPosition > 0.05 ? "pointer-events-none" : "pointer-events-none"}`}>{`> Tech Enthusiast`}</span>
 
                     {/* Social Links */}
                     <div

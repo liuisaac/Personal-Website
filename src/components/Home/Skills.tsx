@@ -50,7 +50,7 @@ const Skills = () => {
                         cursor={false}
                         global={true}
                         speed={1}
-                        config={{ mass: 1, tension: 20, friction: 15 }}
+                        config={{ mass: 1, tension: 1, friction: 2 }}
                     >
                         <Hober path={"./wireball.glb"} />
                     </PresentationControls>
