@@ -32,7 +32,7 @@ function AnimationCanvas({
                 rotation: [-0.5, 1.9, 0.5],
             }}
         >
-            <ScrollControls pages={3.5} damping={0.3} maxSpeed={0.6}>
+            <ScrollControls pages={3.2} damping={0.3} maxSpeed={0.6}>
                 <Scroll>
                     {/* <Floor /> */}
                     <Post />

@@ -26,16 +26,19 @@ import ELeft from '../assets/Home/About_Me/Controls/ELeft.svg';
 import Left from '../assets/Home/About_Me/Controls/Left.svg';
 import ERight from '../assets/Home/About_Me/Controls/ERight.svg';
 import Right from '../assets/Home/About_Me/Controls/Right.svg';
+import Add from '../assets/Home/About_Me/Icons/Add.svg';
+import Code from '../assets/Home/About_Me/Icons/Code.svg';
 import Sine from '../assets/Home/About_Me/Sine.svg';
 
 //Skills
-import halo from '../assets/Home/Hero/Skills/halo.svg';
+import halo from '../assets/Home/Hero/Skills/halo2.svg';
 
 //EXPORTS
 export {
     wavepoint, instagram, linkedin, mail, youtube, github, twitter, mousedown,
     Activities, Clubs, Education, Empty, Favorites, Interests, Music, Resume, Stats, 
     ELeft, Left, ERight, Right, 
+    Add, Code,
     Sine,
     halo,
 
