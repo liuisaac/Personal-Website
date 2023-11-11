@@ -3,10 +3,8 @@ import AnimationCanvas from "./Three/AnimationCanvas";
 import "../../index.css";
 import {
     linkedin,
-    mail,
     youtube,
     github,
-    twitter,
     mousedown,
 } from "../../assets";
 import { useState } from "react";
@@ -121,10 +119,6 @@ const Hero = ({
                                 className="h-10 opacity-90 hover:cursor-pointer hover:drop-shadow-[0_0px_10px_rgba(255,255,255,0.75)] hover:scale-110 transition duration-200 ease-in-out"
                             />
                         </a>
-                        {/* <img
-                            src={twitter}
-                            className="h-10 opacity-90 hover:cursor-pointer hover:drop-shadow-[0_0px_10px_rgba(255,255,255,0.75)] hover:scale-110 transition duration-200 ease-in-out"
-                        /> */}
                         <a
                             href="https://www.linkedin.com/in/liuisaac05/"
                             target="_blank"
@@ -135,16 +129,6 @@ const Hero = ({
                                 className="h-10 opacity-90 hover:cursor-pointer hover:drop-shadow-[0_0px_10px_rgba(255,255,255,0.75)] hover:scale-110 transition duration-200 ease-in-out"
                             />
                         </a>
-                        {/* <a
-                            href="https://github.com/liuisaac/Mecha_Mayhem_App"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <img
-                                src={mail}
-                                className="h-10 opacity-90 hover:cursor-pointer hover:drop-shadow-[0_0px_10px_rgba(255,255,255,0.75)] hover:scale-110 transition duration-200 ease-in-out"
-                            />
-                        </a> */}
                     </div>
                 </div>
             </div>
