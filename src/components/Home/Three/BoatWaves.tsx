@@ -25,6 +25,17 @@ const count = 25;
 //   }
 // `;
 
+const vertexShader = `
+  precision mediump float; // Set precision to mediump
+
+  attribute float scale;
+
+  void main() {
+    gl_PointSize = scale;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+
 const fragmentShader = `
   precision mediump float; // Set precision to mediump
 
@@ -155,12 +166,7 @@ function Points() {
                         color: { value: new THREE.Color(0xffffff) },
                         // map: { value: imgTex },
                     }}
-                    vertexShader={`
-                    void main() {
-                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                        gl_PointSize = 10.0;
-                    }
-                `}
+                    vertexShader={vertexShader}
                     fragmentShader={fragmentShader}
                 />
                 {/* <pointsMaterial attach="material" /> */}
