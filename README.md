@@ -1,7 +1,7 @@
 # My Personal Website
 
 This github repository contains all the frontend code for my personal website.
-You can visit this website at https://WIP.com/
+You can visit this website at https://isaacpliu.com/
 
 Consider checking out some other projects of mine on Github at:
 
