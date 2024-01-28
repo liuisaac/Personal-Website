@@ -5,7 +5,6 @@ import { useFrame, useLoader } from "@react-three/fiber";
 // import { wavepoint } from "../../../assets";
 import "../../../index.css";
 
-
 let t = 0; // time // controls the speed of the animation
 const f = 0.02; // frequency // HIGHER = higher frequency / faster bobbing, LOWER = loewr frequency / slower bobbing
 const rippleFactor = 0.07; // wave travel distance // HIGHER = less travel, LOWER = more travel
@@ -14,6 +13,8 @@ let a = 3; // variable amplitude // isolated amplitude control
 const count = 25;
 
 const vertexShader = `
+  precision mediump float; // Set precision to mediump
+
   attribute float scale;
   
   void main() {
@@ -25,6 +26,8 @@ const vertexShader = `
 `;
 
 const fragmentShader = `
+  precision mediump float; // Set precision to mediump
+  
   uniform vec3 color;
   
   void main() {
