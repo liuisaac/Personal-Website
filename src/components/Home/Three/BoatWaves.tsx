@@ -32,6 +32,7 @@ const vertexShader = `
 
   void main() {
     gl_PointSize = scale;
+    gl_PointSize = min(scale, 2.0);
     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
   }
 `;
