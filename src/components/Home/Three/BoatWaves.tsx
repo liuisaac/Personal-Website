@@ -12,18 +12,18 @@ const rippleFactor = 0.07; // wave travel distance // HIGHER = less travel, LOWE
 let a = 3; // variable amplitude // isolated amplitude control
 const count = 25;
 
-const vertexShader = `
-  precision mediump float; // Set precision to mediump
+// const vertexShader = `
+//   precision mediump float; // Set precision to mediump
 
-  attribute float scale;
+//   attribute float scale;
   
-  void main() {
-    vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+//   void main() {
+//     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
     
-    gl_PointSize = scale * (300.0 / -mvPosition.z);
-    gl_Position = projectionMatrix * mvPosition;
-  }
-`;
+//     gl_PointSize = scale * (300.0 / -mvPosition.z);
+//     gl_Position = projectionMatrix * mvPosition;
+//   }
+// `;
 
 const fragmentShader = `
   precision mediump float; // Set precision to mediump
