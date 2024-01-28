@@ -10,7 +10,7 @@ const About_Me = () => {
 
     const gltf = useLoader(
         GLTFLoader,
-        "../../../public/placeholder_pointcloud.glb"
+        "../../../models/placeholder_pointcloud.glb"
     );
 
     useFrame(({ clock }) => {
