@@ -1,139 +1,67 @@
-import AnimationCanvas from "./Three/AnimationCanvas";
 //Styling
 import "../../index.css";
-import {
-    linkedin,
-    youtube,
-    github,
-    mousedown,
-} from "../../assets";
-import { useState } from "react";
-const Hero = ({
-    ScrollPosition,
-    SScrollPosition,
-}: {
-    ScrollPosition: number;
-    SScrollPosition: Function;
-}) => {
-    // useEffect(() => {
-    //   console.log(ScrollPosition)
-    // }, [ScrollPosition])
+import { isaac_liu, prename, signature, chevron } from "../../assets";
+import { useEffect, useState } from "react";
+import { useFrame } from "@react-three/fiber";
+import { useScroll } from "@react-three/drei";
+
+const Hero = () => {
+    const data = useScroll();
+    const [vis, setVis] = useState(true);
+    useFrame(() => {
+        if (data.offset > 0.03) {
+            setVis(false);
+        } else {
+            setVis(true);
+        }
+    });
+
     const [Warning, setWarning] = useState(true);
+
+    //runs on mount, fronted glass delay
+    useEffect(() => {
+        const interval = setInterval((()=>{setWarning(false)}), 250);
+        return () => clearInterval(interval);
+    }, [Warning])
+
     return (
         //FADE OUT WHEN SCROLL NOT AT TOP
         <div
-            className={`w-full h-full bg-gray-900 text-white overflow-hidden relative`}
+            className={`w-full h-full text-white overflow-hidden relative transition duration-500 ease-in-out ${
+                vis ? "opacity-100" : "opacity-0"
+            }`}
         >
             <div
                 className={`absolute bg-black h-screen w-screen z-50 bg-opacity-60 backdrop-blur-lg
             ${
                 Warning ? "opacity-100" : "opacity-0 pointer-events-none"
             } transition duration-1000`}
-                onClick={() => setWarning(false)}
-            >
-                <div className="h-screen w-screen flex flex-col justify-center items-center text-6xl">
-                    <span className="text-white">Use a Scroll Wheel</span>
-                    <span className="text-white font-bold mt-10">
-                        For the Best User Experience
-                    </span>
-                    <span className="text-white font-bold mt-10 mb-24 text-xl">
-                        (Click anywhere to exit this screen)
-                    </span>
-                    <img
-                        src={mousedown}
-                        className="w-36 animate-pulse duration-1000"
-                    />
-                </div>
-            </div>
+            />
+
             <div
                 className={`absolute w-full text-[25rem] font-inconsolata font-semibold 
-            items-center justify-center -mt-24 transition duration-500 ease-in-out ${
-                ScrollPosition > 0.1 ? "opacity-0" : "opacity-100"
-            }`}
+            items-center justify-center transition duration-500 ease-in-out `}
             >
-                {/* Name */}
-                <span className="overflow-hidden select-none drop-shadow-[0_0px_5px_rgba(255,255,255,0.8)] opacity-80">
-                    isaac_liu
-                </span>
-            </div>
-
-            {/* Tags */}
-            <div
-                className={`flex-col w-1/32 items-start justify-center absolute z-10
-             transition duration-300 ease-in-out select-none pointer-events-none
-             ${
-                 ScrollPosition > 0.05
-                     ? "opacity-0 pointer-events-none"
-                     : "opacity-100"
-             } $
-             {( ScrollPosition > 0.1 ) ? "hidden" : "flex"}`}
-            >
-                <div
-                    className="flex flex-col items-start justify-start text-6xl select-none opacity-80
-      mt-[48vh] ml-[12vh] font-inconsolata text-[#9B9B9B] font-semibold tracking-wider"
-                >
-                    <span
-                        className={`-mt-10 my-12 opacity-40 hover:opacity-80 transition duration-150 pointer-events-none ${
-                            ScrollPosition > 0.05
-                                ? "pointer-events-none"
-                                : "pointer-events-none"
-                        }`}
-                    >{`> BSc. Student @ UBC`}</span>
-                    <span
-                        className={`-mt-10 my-12 opacity-40 hover:opacity-80 transition duration-150 pointer-events-none ${
-                            ScrollPosition > 0.05
-                                ? "pointer-events-none"
-                                : "pointer-events-none"
-                        }`}
-                    >{`> Software Developer`}</span>
-                    <span
-                        className={`-mt-10       opacity-40 hover:opacity-80 transition duration-150 pointer-events-none ${
-                            ScrollPosition > 0.05
-                                ? "pointer-events-none"
-                                : "pointer-events-none"
-                        }`}
-                    >{`> Tech Enthusiast`}</span>
-
-                    {/* Social Links */}
-                    <div
-                        className="flex flex-row content-evenly justify-center items-center pointer-events-auto 
-            h-14 w-[14rem] bg-black bg-opacity-60 rounded-full mt-8 space-x-10 backdrop-blur-[4px]"
-                    >
-                        <a
-                            href="https://github.com/liuisaac/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <img
-                                src={github}
-                                className="h-10 opacity-90 hover:cursor-pointer hover:drop-shadow-[0_0px_10px_rgba(255,255,255,0.75)] hover:scale-110 transition duration-200 ease-in-out"
-                            />
-                        </a>
-                        <a
-                            href="https://www.youtube.com/@isaacliu8544"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <img
-                                src={youtube}
-                                className="h-10 opacity-90 hover:cursor-pointer hover:drop-shadow-[0_0px_10px_rgba(255,255,255,0.75)] hover:scale-110 transition duration-200 ease-in-out"
-                            />
-                        </a>
-                        <a
-                            href="https://www.linkedin.com/in/liuisaac05/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <img
-                                src={linkedin}
-                                className="h-10 opacity-90 hover:cursor-pointer hover:drop-shadow-[0_0px_10px_rgba(255,255,255,0.75)] hover:scale-110 transition duration-200 ease-in-out"
-                            />
-                        </a>
+                <div className="flex flex-row justify-center items-center w-full h-[8vh] sm:mt-[30vh] mt-[40vh] sm:mb-[7.5vh]">
+                    <div>
+                        <img src={prename} className="z-30 px-[30vw]" />
                     </div>
                 </div>
-            </div>
-            <div className="w-full h-full">
-                <AnimationCanvas setScrollPosition={SScrollPosition} />
+                {/* Name */}
+                <div className="flex flex-col justify-center items-center w-full pointer-events-none">
+                    <img
+                        src={isaac_liu}
+                        className="relative z-20 sm:w-3/5 w-[80vw]"
+                    />
+                    <img
+                        src={signature}
+                        className="absolute z-10 sm:w-[55vw] w-[80vw]"
+                    />
+                </div>
+
+                <div className="w-screen flex flex-row justify-center items-center">
+                    <img src={chevron} className="w-[25vw] animate-pulse"/>
+                </div>
             </div>
         </div>
     );

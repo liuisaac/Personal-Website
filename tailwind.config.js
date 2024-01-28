@@ -17,6 +17,7 @@ export default {
         poppins: ["Poppins", "sans-serif"],
         rubik: ["Rubik", "sans-serif"],
         inconsolata: ["Inconsolata", "monospace"],
+        roboto: ["Roboto", "sans-serif"],
       },
       screens: {
         se: "300px",

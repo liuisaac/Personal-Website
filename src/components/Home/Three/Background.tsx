@@ -8,7 +8,7 @@ function Post() {
     return (
         <group>
             <EffectComposer>
-                <Bloom mipmapBlur luminanceThreshold={5} />
+                <Bloom mipmapBlur luminanceThreshold={5}/>
             </EffectComposer>
         </group>
     );
@@ -59,13 +59,13 @@ function ShootingStar() {
         </Trail>
     );
 }
-function Floor() {
-    return (
-        <mesh position={[-100, -101, 0]} rotation={[0, 9.8, 0]}>
-            <boxGeometry args={[1, 200, 1000]} />
-            <meshBasicMaterial color={new THREE.Color(0.017, 0.022, 0.036)} />
-        </mesh>
-    );
-}
+// function Floor() {
+//     return (
+//         <mesh position={[-100, -101, 0]} rotation={[0, 9.8, 0]}>
+//             <boxGeometry args={[1, 200, 1000]} />
+//             <meshBasicMaterial color={new THREE.Color(0.017, 0.022, 0.036)} />
+//         </mesh>
+//     );
+// }
 
-export default { Post, ShootingStar, Floor };
+export default { Post, ShootingStar };

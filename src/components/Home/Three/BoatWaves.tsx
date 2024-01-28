@@ -2,15 +2,14 @@ import * as THREE from "three";
 import { useMemo, useCallback, useRef, useState } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { useFrame, useLoader } from "@react-three/fiber";
-import { Stars, useScroll } from "@react-three/drei";
 import { wavepoint } from "../../../assets";
 import "../../../index.css";
 
 let t = 0; // time // controls the speed of the animation
-const f = 0.0028; // frequency // HIGHER = higher frequency / faster bobbing, LOWER = loewr frequency / slower bobbing
-const rippleFactor = 0.05; // wave travel distance // HIGHER = less travel, LOWER = more travel
+const f = 0.02; // frequency // HIGHER = higher frequency / faster bobbing, LOWER = loewr frequency / slower bobbing
+const rippleFactor = 0.07; // wave travel distance // HIGHER = less travel, LOWER = more travel
 // eslint-disable-next-line prefer-const
-let a = 2; // variable amplitude // isolated amplitude control
+let a = 3; // variable amplitude // isolated amplitude control
 const count = 40;
 
 const vertexShader = `
@@ -34,21 +33,16 @@ const fragmentShader = `
   }
 `;
 
-function Points({ SScrollPosition }: { SScrollPosition: Function }) {
+function Points() {
     const imgTex = useLoader(THREE.TextureLoader, wavepoint);
     const positionBufferRef = useRef<THREE.BufferAttribute | null>();
     const scaleBufferRef = useRef<THREE.BufferAttribute | null>();
-    const [Previous, setPrevious] = useState(0);
-    const distance = useScroll();
 
     const graph = useCallback(
         (x: number, z: number) => {
-            const circle = x ** 2 + z ** 2;
             return (
-                Math.sin(f * (circle - t)) *
-                a *
-                rippleFactor *
-                ((1 / rippleFactor) * Math.E ** (-circle * f * rippleFactor))
+                Math.sin(f * (x - t)) *
+                a
             );
         },
         [t, f, a]
@@ -57,18 +51,16 @@ function Points({ SScrollPosition }: { SScrollPosition: Function }) {
 
     //loop
     let positions = useMemo(() => {
-        let positions = [];
+        let positions : number[] = [];
 
         for (let xi = 0; xi < count; xi++) {
             for (let zi = 0; zi < count; zi++) {
-                if ((xi - count / 2) ** 2 + (zi - count / 2) ** 2 < 500) {
+
                     let x = sep * (xi - count / 2);
                     let z = sep * (zi - count / 2);
                     let y = graph(x, z);
                     positions.push(x, y, z);
-                } else {
-                    positions.push(0, 0, 0);
-                }
+
             }
         }
 
@@ -76,15 +68,11 @@ function Points({ SScrollPosition }: { SScrollPosition: Function }) {
     }, [count, sep, graph]);
 
     let scale = useMemo(() => {
-        let scale = [];
+        let scale : number[] = [];
 
         for (let xi = 0; xi < count; xi++) {
             for (let zi = 0; zi < count; zi++) {
-                if ((xi - count / 2) ** 2 + (zi - count / 2) ** 2 < 300) {
-                    scale.push(1);
-                } else {
-                    scale.push(0);
-                }
+                scale.push(1);
             }
         }
 
@@ -92,7 +80,7 @@ function Points({ SScrollPosition }: { SScrollPosition: Function }) {
     }, [count, sep, graph]);
 
     useFrame(() => {
-        t += 18;
+        t += 1;
 
         const positions = positionBufferRef.current?.array;
         const scale = scaleBufferRef.current?.array;
@@ -104,10 +92,10 @@ function Points({ SScrollPosition }: { SScrollPosition: Function }) {
                 for (let zi = 0; zi < count; zi++) {
                     let x = sep * (xi - count / 2);
                     let z = sep * (zi - count / 2);
-                    if (x != 0 || z != 0) {
+
                         positions[i + 1] = graph(x, z);
                         scale[s] = (4 * positions[i + 1] + 1) / 2;
-                    }
+
                     i += 3;
                     s++;
                 }
@@ -119,13 +107,7 @@ function Points({ SScrollPosition }: { SScrollPosition: Function }) {
         if (scaleBufferRef && scaleBufferRef.current) {
             scaleBufferRef.current.needsUpdate = true;
         }
-        if (
-            distance.offset < 0.2 &&
-            Math.abs(distance.offset - Previous) > 0.05
-        ) {
-            setPrevious(distance.offset);
-            SScrollPosition(distance.offset);
-        }
+
         // if (distance.offset > 0.3) {
         //     console.log("switch");
         // }
@@ -137,7 +119,7 @@ function Points({ SScrollPosition }: { SScrollPosition: Function }) {
     return (
         <group>
             {/* Stars */}
-            <Stars
+            {/* <Stars
                 radius={100}
                 depth={102}
                 count={500}
@@ -145,7 +127,7 @@ function Points({ SScrollPosition }: { SScrollPosition: Function }) {
                 saturation={0}
                 fade
                 speed={2}
-            />
+            /> */}
 
             {/* wavePoints */}
             <points>
@@ -172,7 +154,7 @@ function Points({ SScrollPosition }: { SScrollPosition: Function }) {
                 <shaderMaterial
                     attach="material"
                     uniforms={{
-                        color: { value: new THREE.Color(0x596cce) },
+                        color: { value: new THREE.Color(0xffffff) },
                         map: { value: imgTex },
                     }}
                     vertexShader={vertexShader}
@@ -186,7 +168,48 @@ function Points({ SScrollPosition }: { SScrollPosition: Function }) {
     );
 }
 
-function Boat({ path }: { path: string }) {
+// function Boat({ path }: { path: string }) {
+//     const [boatHeight, setBoatHeight] = useState(0);
+//     const gltf = useLoader(GLTFLoader, path);
+
+//     const graph = useCallback(
+//         (x: number, z: number) => {
+//             const circle = x ** 2 + z ** 2;
+//             return (
+//                 Math.sin(f * (circle - t)) *
+//                 1.5 *
+//                 rippleFactor *
+//                 ((1 / rippleFactor) * Math.E ** (-circle * f * rippleFactor))
+//             );
+//         },
+//         [t, f, a]
+//     );
+
+//     useFrame(() => {
+//         setBoatHeight(graph(0, 0) - (1 + a / 2));
+//         //6.28
+//         //3.54318885548 <- integralConst
+//     });
+//     return (
+//         <group position={[0, boatHeight, 0]} rotation={[0, 0, 0]}>
+//             <primitive object={gltf.scene} />
+//         </group>
+//     );
+// }
+
+
+
+// function City({ path }: { path: string }) {
+//     const gltf = useLoader(GLTFLoader, path);
+
+//     return (
+//         <group position={[0, 10, 0]} rotation={[0, 0, 0]}>
+//             <primitive object={gltf.scene} />
+//         </group>
+//     );
+// }
+
+function City({ path }: { path: string }) {
     const [boatHeight, setBoatHeight] = useState(0);
     const gltf = useLoader(GLTFLoader, path);
 
@@ -195,7 +218,7 @@ function Boat({ path }: { path: string }) {
             const circle = x ** 2 + z ** 2;
             return (
                 Math.sin(f * (circle - t)) *
-                1.5 *
+                0.8 *
                 rippleFactor *
                 ((1 / rippleFactor) * Math.E ** (-circle * f * rippleFactor))
             );
@@ -209,20 +232,10 @@ function Boat({ path }: { path: string }) {
         //3.54318885548 <- integralConst
     });
     return (
-        <group position={[0, boatHeight, 0]} rotation={[0, 0, 0]}>
+        <group position={[0, boatHeight + 15, 0]} rotation={[0, 0, 0]}>
             <primitive object={gltf.scene} />
         </group>
     );
 }
 
-function Hober({ path }: { path: string }) {
-    const gltf = useLoader(GLTFLoader, path);
-
-    return (
-        <group position={[0, 0, 0]} rotation={[0, 0, 0]}>
-            <primitive object={gltf.scene} />
-        </group>
-    );
-}
-
-export default { Points, Boat, Hober };
+export default { Points, City };
