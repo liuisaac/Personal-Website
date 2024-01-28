@@ -18,7 +18,7 @@ const vertexShader = `
   void main() {
     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
     
-    gl_PointSize = scale * (100.0 / -mvPosition.z);
+    gl_PointSize = scale * (300.0 / -mvPosition.z);
     gl_Position = projectionMatrix * mvPosition;
   }
 `;
@@ -40,10 +40,7 @@ function Points() {
 
     const graph = useCallback(
         (x: number) => {
-            return (
-                Math.sin(f * (x - t)) *
-                a
-            );
+            return Math.sin(f * (x - t)) * a;
         },
         [t, f, a]
     );
@@ -51,16 +48,14 @@ function Points() {
 
     //loop
     let positions = useMemo(() => {
-        let positions : number[] = [];
+        let positions: number[] = [];
 
         for (let xi = 0; xi < count; xi++) {
             for (let zi = 0; zi < count; zi++) {
-
-                    let x = sep * (xi - count / 2);
-                    let z = sep * (zi - count / 2);
-                    let y = graph(x);
-                    positions.push(x, y, z);
-
+                let x = sep * (xi - count / 2);
+                let z = sep * (zi - count / 2);
+                let y = graph(x);
+                positions.push(x, y, z);
             }
         }
 
@@ -68,7 +63,7 @@ function Points() {
     }, [count, sep, graph]);
 
     let scale = useMemo(() => {
-        let scale : number[] = [];
+        let scale: number[] = [];
 
         for (let xi = 0; xi < count; xi++) {
             for (let zi = 0; zi < count; zi++) {
@@ -92,8 +87,8 @@ function Points() {
                 for (let zi = 0; zi < count; zi++) {
                     let x = sep * (xi - count / 2);
 
-                        positions[i + 1] = graph(x);
-                        scale[s] = (4 * positions[i + 1] + 1) / 2;
+                    positions[i + 1] = graph(x);
+                    scale[s] = (4 * positions[i + 1] + 1) / 2;
 
                     i += 3;
                     s++;
@@ -150,7 +145,7 @@ function Points() {
                         itemSize={1}
                     />
                 </bufferGeometry>
-                <shaderMaterial
+                {/* <shaderMaterial
                     attach="material"
                     uniforms={{
                         color: { value: new THREE.Color(0xffffff) },
@@ -161,7 +156,8 @@ function Points() {
                     alphaTest={0.5}
                     transparent={false}
                     opacity={1}
-                />
+                /> */}
+                <pointsMaterial attach="material" />
             </points>
         </group>
     );
@@ -195,8 +191,6 @@ function Points() {
 //         </group>
 //     );
 // }
-
-
 
 // function City({ path }: { path: string }) {
 //     const gltf = useLoader(GLTFLoader, path);
