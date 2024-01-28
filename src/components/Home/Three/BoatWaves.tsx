@@ -25,28 +25,25 @@ const count = 25;
 //   }
 // `;
 
-const vertexShader = `
-  precision mediump float; // Set precision to mediump
+// const vertexShader = `
+//   void main() {
+//     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+//     gl_PointSize = 20.0; // Set a fixed size
+//     gl_Position = projectionMatrix * mvPosition;
+//   }
+// `;
 
-  attribute float scale;
+// const fragmentShader = `
+//   precision mediump float; // Set precision to mediump
 
-  void main() {
-    gl_PointSize = min(scale, 2.0); 
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-  }
-`;
-
-const fragmentShader = `
-  precision mediump float; // Set precision to mediump
-
-  uniform vec3 color;
+//   uniform vec3 color;
   
-  void main() {
-    if (length(gl_PointCoord - vec2(0.5, 0.5)) > 0.475) discard;
+//   void main() {
+//     if (length(gl_PointCoord - vec2(0.5, 0.5)) > 0.475) discard;
     
-    gl_FragColor = vec4(color, 1.0);
-  }
-`;
+//     gl_FragColor = vec4(color, 1.0);
+//   }
+// `;
 
 function Points() {
     // const imgTex = useLoader(THREE.TextureLoader, wavepoint);
@@ -160,7 +157,7 @@ function Points() {
                         itemSize={1}
                     />
                 </bufferGeometry>
-                <shaderMaterial
+                {/* <shaderMaterial
                     attach="material"
                     uniforms={{
                         color: { value: new THREE.Color(0xffffff) },
@@ -168,7 +165,7 @@ function Points() {
                     }}
                     vertexShader={vertexShader}
                     fragmentShader={fragmentShader}
-                />
+                /> */}
                 {/* <pointsMaterial attach="material" /> */}
             </points>
         </group>
