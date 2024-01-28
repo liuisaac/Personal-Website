@@ -12,30 +12,30 @@ const rippleFactor = 0.07; // wave travel distance // HIGHER = less travel, LOWE
 let a = 3; // variable amplitude // isolated amplitude control
 const count = 25;
 
-const vertexShader = `
-  precision mediump float; // Set precision to mediump
+// const vertexShader = `
+//   precision mediump float; // Set precision to mediump
 
-  attribute float scale;
-  
-  void main() {
-    vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-    
-    gl_PointSize = scale * (300.0 / -mvPosition.z);
-    gl_Position = projectionMatrix * mvPosition;
-  }
-`;
+//   attribute float scale;
 
-const fragmentShader = `
-  precision mediump float; // Set precision to mediump
-  
-  uniform vec3 color;
-  
-  void main() {
-    if (length(gl_PointCoord - vec2(0.5, 0.5)) > 0.475) discard;
-    
-    gl_FragColor = vec4(color, 1.0);
-  }
-`;
+//   void main() {
+//     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+
+//     gl_PointSize = scale * (300.0 / -mvPosition.z);
+//     gl_Position = projectionMatrix * mvPosition;
+//   }
+// `;
+
+// const fragmentShader = `
+//   precision mediump float; // Set precision to mediump
+
+//   uniform vec3 color;
+
+//   void main() {
+//     if (length(gl_PointCoord - vec2(0.5, 0.5)) > 0.475) discard;
+
+//     gl_FragColor = vec4(color, 1.0);
+//   }
+// `;
 
 function Points() {
     // const imgTex = useLoader(THREE.TextureLoader, wavepoint);
@@ -151,15 +151,17 @@ function Points() {
                 </bufferGeometry>
                 <shaderMaterial
                     attach="material"
-                    uniforms={{
-                        color: { value: new THREE.Color(0xffffff) },
-                        // map: { value: imgTex },
-                    }}
-                    vertexShader={vertexShader}
-                    fragmentShader={fragmentShader}
-                    alphaTest={0.5}
-                    transparent={false}
-                    opacity={1}
+                    vertexShader={`
+        void main() {
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            gl_PointSize = 10.0;
+        }
+    `}
+                    fragmentShader={`
+        void main() {
+            gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+        }
+    `}
                 />
                 {/* <pointsMaterial attach="material" /> */}
             </points>
