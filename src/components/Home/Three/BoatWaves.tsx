@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { useMemo, useCallback, useRef, useState } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { useFrame, useLoader } from "@react-three/fiber";
-import { wavepoint } from "../../../assets";
+// import { wavepoint } from "../../../assets";
 import "../../../index.css";
 
 
@@ -35,7 +35,7 @@ const fragmentShader = `
 `;
 
 function Points() {
-    const imgTex = useLoader(THREE.TextureLoader, wavepoint);
+    // const imgTex = useLoader(THREE.TextureLoader, wavepoint);
     const positionBufferRef = useRef<THREE.BufferAttribute | null>();
     const scaleBufferRef = useRef<THREE.BufferAttribute | null>();
 
@@ -150,7 +150,7 @@ function Points() {
                     attach="material"
                     uniforms={{
                         color: { value: new THREE.Color(0xffffff) },
-                        map: { value: imgTex },
+                        // map: { value: imgTex },
                     }}
                     vertexShader={vertexShader}
                     fragmentShader={fragmentShader}
