@@ -31,8 +31,7 @@ const vertexShader = `
   attribute float scale;
 
   void main() {
-    gl_PointSize = sc;
-    gl_PointSize = min(sc, 2.0);
+    gl_PointSize = min(scale, 2.0); 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
   }
 `;
@@ -78,25 +77,25 @@ function Points() {
         return new Float32Array(positions);
     }, [count, sep, graph]);
 
-    let scale = useMemo(() => {
-        let scale: number[] = [];
+    let scal = useMemo(() => {
+        let scal: number[] = [];
 
         for (let xi = 0; xi < count; xi++) {
             for (let zi = 0; zi < count; zi++) {
-                scale.push(1);
+                scal.push(1);
             }
         }
 
-        return new Float32Array(scale);
+        return new Float32Array(scal);
     }, [count, sep, graph]);
 
     useFrame(() => {
         t += 1;
 
         const positions = positionBufferRef.current?.array;
-        const scale = scaleBufferRef.current?.array;
+        const scal = scaleBufferRef.current?.array;
         // console.log(positions == null)
-        if (positions && scale) {
+        if (positions && scal) {
             let i = 0;
             let s = 0;
             for (let xi = 0; xi < count; xi++) {
@@ -104,7 +103,7 @@ function Points() {
                     let x = sep * (xi - count / 2);
 
                     positions[i + 1] = graph(x);
-                    scale[s] = (4 * positions[i + 1] + 1) / 2;
+                    scal[s] = (4 * positions[i + 1] + 1) / 2;
 
                     i += 3;
                     s++;
@@ -156,8 +155,8 @@ function Points() {
                             scaleBufferRef as React.MutableRefObject<THREE.BufferAttribute>
                         }
                         attach={"attributes-scale"}
-                        array={scale}
-                        count={scale.length}
+                        array={scal}
+                        count={scal.length}
                         itemSize={1}
                     />
                 </bufferGeometry>
