@@ -35,7 +35,7 @@ function AnimationCanvas() {
         return (
             <PerspectiveCamera
                 makeDefault
-                position={[200, 30, 0]}
+                position={[200, 20, 0]}
                 near={1}
                 fov={20}
                 far={4000}
