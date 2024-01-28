@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { useMemo, useCallback, useRef, useState } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { useFrame, useLoader } from "@react-three/fiber";
-import { wavepoint } from "../../../assets";
+// import { wavepoint } from "../../../assets";
 import "../../../index.css";
 
 let t = 0; // time // controls the speed of the animation
