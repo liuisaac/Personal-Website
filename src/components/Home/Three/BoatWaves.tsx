@@ -10,7 +10,7 @@ const f = 0.02; // frequency // HIGHER = higher frequency / faster bobbing, LOWE
 const rippleFactor = 0.07; // wave travel distance // HIGHER = less travel, LOWER = more travel
 // eslint-disable-next-line prefer-const
 let a = 3; // variable amplitude // isolated amplitude control
-const count = 30;
+const count = 25;
 
 const vertexShader = `
   attribute float scale;
@@ -18,7 +18,7 @@ const vertexShader = `
   void main() {
     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
     
-    gl_PointSize = scale * (300.0 / -mvPosition.z);
+    gl_PointSize = scale * (100.0 / -mvPosition.z);
     gl_Position = projectionMatrix * mvPosition;
   }
 `;
@@ -27,6 +27,8 @@ const fragmentShader = `
   uniform vec3 color;
   
   void main() {
+    if (length(gl_PointCoord - vec2(0.5, 0.5)) > 0.475) discard;
+    
     gl_FragColor = vec4(color, 1.0);
   }
 `;

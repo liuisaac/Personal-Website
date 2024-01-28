@@ -12,19 +12,16 @@ const Projects = () => {
                 >
                     <img src={bobble.thumbnail} />
                     <span
-                        key={index}
                         className=" inline font-semibold font-roboto text-white tracking-wider py-1 text-xl "
                     >
                         {bobble.name}
                     </span>
                     <span
-                        key={index}
                         className=" inline-block font-semibold font-roboto text-[#3EFFDC] tracking-wider py-1 text-sm "
                     >
                         {bobble.technologies.join(" - ")}
                     </span>
                     <span
-                        key={index}
                         className=" inline-block font-light font-roboto text-white tracking-wider py-1 text-sm"
                     >
                         {bobble.description}
