@@ -60,7 +60,7 @@ function AnimationCanvas() {
                         <Hero />
                     </div>
 
-                    <div className="w-screen h-screen">
+                    <div className="w-screen h-[170vh]">
                         <About_Me />
                     </div>
                     <div className="w-screen h-[90vh] bg-opacity-20">

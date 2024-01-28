@@ -10,7 +10,7 @@ const f = 0.02; // frequency // HIGHER = higher frequency / faster bobbing, LOWE
 const rippleFactor = 0.07; // wave travel distance // HIGHER = less travel, LOWER = more travel
 // eslint-disable-next-line prefer-const
 let a = 3; // variable amplitude // isolated amplitude control
-const count = 40;
+const count = 30;
 
 const vertexShader = `
   attribute float scale;
@@ -39,7 +39,7 @@ function Points() {
     const scaleBufferRef = useRef<THREE.BufferAttribute | null>();
 
     const graph = useCallback(
-        (x: number, z: number) => {
+        (x: number) => {
             return (
                 Math.sin(f * (x - t)) *
                 a
@@ -58,7 +58,7 @@ function Points() {
 
                     let x = sep * (xi - count / 2);
                     let z = sep * (zi - count / 2);
-                    let y = graph(x, z);
+                    let y = graph(x);
                     positions.push(x, y, z);
 
             }
@@ -91,9 +91,8 @@ function Points() {
             for (let xi = 0; xi < count; xi++) {
                 for (let zi = 0; zi < count; zi++) {
                     let x = sep * (xi - count / 2);
-                    let z = sep * (zi - count / 2);
 
-                        positions[i + 1] = graph(x, z);
+                        positions[i + 1] = graph(x);
                         scale[s] = (4 * positions[i + 1] + 1) / 2;
 
                     i += 3;

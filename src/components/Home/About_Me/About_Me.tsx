@@ -25,10 +25,10 @@ const About_Me = () => {
     });
     return (
         <div
-            className="w-screen h-screen bg-gradient-to-b from-transparent to-[#221240] to-15% font-roboto flex flex-col items-center justify-center
+            className="w-screen h-full bg-gradient-to-b from-transparent to-[#221240] to-60% font-roboto flex flex-col items-center justify-center
         font-extrabold text-[44px]"
         >
-            <div className="absolute w-full h-full md:-mt-[10vh] mt-[20vh]">
+            <div className="absolute w-full h-full">
                 <Canvas camera={{ position: [100, 0, 0], zoom: 1.5 }}>
                     <directionalLight position={[100, 0, 0]} intensity={5} />
                     <mesh
@@ -39,7 +39,7 @@ const About_Me = () => {
                     </mesh>
                 </Canvas>
             </div>
-            <div className="w-full h-[10vh] -mt-[10vh]">
+            <div className="w-full h-[10vh] mt-[0vh]">
                 <img src={who} className="ml-8 h-12" />
             </div>
             <div className="mt-[10vh] h-[30vh] px-12 relative">
