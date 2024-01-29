@@ -56,7 +56,7 @@ const About_Me = () => {
                     />
                 </Canvas>
             </div>
-            <div className="w-full h-[10vh] mt-[0vh]">
+            <div className="w-full h-[10vh] -mt-[100vh] absolute">
                 <img src={who} className="ml-8 h-12" />
             </div>
             <div className="mt-[10vh] h-[30vh] px-12 relative">
