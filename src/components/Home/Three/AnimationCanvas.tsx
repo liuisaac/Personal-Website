@@ -48,7 +48,7 @@ function AnimationCanvas() {
     return (
         <Canvas dpr={Math.min(window.devicePixelRatio, 2)}>
             <Rig />
-            <ScrollControls pages={5.7} damping={0.3}>
+            <ScrollControls pages={5.7} damping={0.3} distance={1}>
                 <Scroll> 
                     {/* Canvas Components */}
                     {/* <Floor /> */}
