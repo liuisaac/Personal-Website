@@ -3,15 +3,26 @@ import { who } from "../../../assets";
 import Typewriter from "./typewriter/Typewriter";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { useRef } from "react";
-import { BufferGeometry, Mesh } from "three";
+import {
+    BufferAttribute,
+    BufferGeometry,
+    Mesh,
+    Points,
+    PointsMaterial,
+} from "three";
 
 const About_Me = () => {
     const myMesh = useRef<Mesh | null>(null);
 
-    const gltf = useLoader(
-        GLTFLoader,
-        "../../../models/placeholder_pointcloud.glb"
+    const gltf = useLoader(GLTFLoader, "../../../models/decimated_trefoil.glb");
+
+    const meshObject = gltf.scene.children[0] as Mesh<BufferGeometry>;
+    const vertices = new Float32Array(
+        meshObject.geometry.attributes.position.array
     );
+
+    const pointsGeometry = new BufferGeometry();
+    pointsGeometry.setAttribute("position", new BufferAttribute(vertices, 3));
 
     useFrame(({ clock }) => {
         if (myMesh.current) {
@@ -19,8 +30,8 @@ const About_Me = () => {
             const mesh = myMesh.current! as THREE.Mesh;
 
             // Now you can access the rotation property without type errors
-            mesh.rotation.x = clock.getElapsedTime() / 7;
-            mesh.rotation.y = clock.getElapsedTime() / 7;
+            mesh.rotation.x = clock.getElapsedTime() / 16;
+            mesh.rotation.y = clock.getElapsedTime() / 40;
         }
     });
     return (
@@ -29,14 +40,20 @@ const About_Me = () => {
         font-extrabold text-[44px]"
         >
             <div className="absolute w-full h-full">
-                <Canvas camera={{ position: [100, 0, 0], zoom: 1.5 }}>
+                <Canvas camera={{ position: [1500, 0, 0], zoom: 1 , far: 3000}}>
                     <directionalLight position={[100, 0, 0]} intensity={5} />
-                    <mesh
-                        position={[0, 0, 0]}
+                    <primitive
                         ref={myMesh as React.RefObject<Mesh<BufferGeometry>>}
-                    >
-                        <primitive object={gltf.scene} />
-                    </mesh>
+                        object={
+                            new Points(
+                                pointsGeometry,
+                                new PointsMaterial({
+                                    size: 2.9,
+                                    color: "white",
+                                })
+                            )
+                        }
+                    />
                 </Canvas>
             </div>
             <div className="w-full h-[10vh] mt-[0vh]">

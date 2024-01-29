@@ -63,12 +63,12 @@ function AnimationCanvas() {
                     <div className="w-screen h-[170vh]">
                         <About_Me />
                     </div>
-                    <div className="w-screen h-[90vh] bg-opacity-20">
+                    {/* <div className="w-screen h-[90vh] bg-opacity-20">
                         <Skills />
                     </div>
                     <div className="w-screen h-[80vh] bg-opacity-20">
                         <References />
-                    </div>
+                    </div> */}
                     <div className="w-screen h-[200vh] bg-opacity-20 bg-[#1C1B1D]">
                         <Projects />
                     </div>
