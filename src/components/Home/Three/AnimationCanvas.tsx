@@ -17,7 +17,7 @@ BoatWaves;
 
 //Styling
 import "../../../index.css";
-import { About_Me, Hero, Skills, References, Projects } from "..";
+import { About_Me, Hero, Projects } from "..";
 import { useRef } from "react";
 
 
