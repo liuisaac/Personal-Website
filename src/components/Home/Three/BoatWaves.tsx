@@ -166,7 +166,7 @@ function Points() {
                     vertexShader={vertexShader}
                     fragmentShader={fragmentShader}
                 /> */}
-                {/* <pointsMaterial attach="material" /> */}
+                <pointsMaterial attach="material" />
             </points>
         </group>
     );
