@@ -46,7 +46,7 @@ function AnimationCanvas() {
     };
 
     return (
-        <Canvas dpr={Math.min(window.devicePixelRatio, 2)}>
+        <Canvas dpr={Math.min(window.devicePixelRatio, 2)} className="pointer-events-none">
             <Rig />
             <ScrollControls pages={5.7} damping={0.3} distance={1}>
                 <Scroll> 
@@ -69,7 +69,7 @@ function AnimationCanvas() {
                     <div className="w-screen h-[80vh] bg-opacity-20">
                         <References />
                     </div> */}
-                    <div className="w-screen h-[200vh] bg-opacity-20 bg-[#1C1B1D]">
+                    <div className="w-screen h-[200vh] bg-opacity-20 bg-[#1C1B1D] z-50">
                         <Projects />
                     </div>
                 </Scroll>

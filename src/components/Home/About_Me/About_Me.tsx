@@ -37,10 +37,10 @@ const About_Me = () => {
     return (
         <div
             className="w-screen h-full bg-gradient-to-b from-transparent to-[#221240] to-60% font-roboto flex flex-col items-center justify-center
-        font-extrabold text-[44px]"
+        font-extrabold text-[44px] pointer-events-none"
         >
-            <div className="absolute w-full h-full">
-                <Canvas camera={{ position: [1500, 0, 0], zoom: 1 , far: 3000}}>
+            <div className="absolute w-full h-[200vh] pointer-events-none overflow-hidden">
+                <Canvas camera={{ position: [1500, 0, 0], zoom: 1 , far: 3000}} className="w-full h-full">
                     <directionalLight position={[100, 0, 0]} intensity={5} />
                     <primitive
                         ref={myMesh as React.RefObject<Mesh<BufferGeometry>>}
