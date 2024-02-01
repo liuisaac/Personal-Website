@@ -18,10 +18,24 @@ BoatWaves;
 //Styling
 import "../../../index.css";
 import { About_Me, Hero, Projects } from "..";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
+
+const getWindowSize = () => {
+    const [size, setSize] = useState([0, 0]);
+    useEffect(() => {
+        function updateSize() {
+            setSize([window.innerWidth, window.innerHeight]);
+        }
+        window.addEventListener("resize", updateSize);
+        updateSize();
+        return () => window.removeEventListener("resize", updateSize);
+    }, []);
+    return size;
+};
 
 function AnimationCanvas() {
+    const vdim = getWindowSize();
     const Rig = () => {
         const refCamera = useRef(null);
         // let zoomConstant = 1.5;
@@ -61,7 +75,7 @@ function AnimationCanvas() {
                     </div>
 
                     <div className="w-screen h-[170vh]">
-                        <About_Me />
+                        <About_Me v={vdim}/>
                     </div>
                     {/* <div className="w-screen h-[90vh] bg-opacity-20">
                         <Skills />

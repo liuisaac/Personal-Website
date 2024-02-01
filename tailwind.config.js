@@ -18,6 +18,7 @@ export default {
         rubik: ["Rubik", "sans-serif"],
         inconsolata: ["Inconsolata", "monospace"],
         roboto: ["Roboto", "sans-serif"],
+        space_grotesk: ["Space Grotesk", "sans-serif"],
       },
       screens: {
         se: "300px",

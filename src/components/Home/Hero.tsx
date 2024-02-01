@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useScroll } from "@react-three/drei";
 
+
 const Hero = () => {
     const data = useScroll();
     const [vis, setVis] = useState(true);

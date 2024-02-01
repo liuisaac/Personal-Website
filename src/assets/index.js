@@ -48,7 +48,15 @@ import quote from '../assets/Home/Skills/quotes.svg';
 import justin from '../assets/Home/Skills/justin.png';
 
 //thumbnails
+import cbx_capital_partners from '../assets/Home/Projects/thumbnails/cbx_capital_partners.png';
+import churchill from '../assets/Home/Projects/thumbnails/churchill.png';
+import cyl from '../assets/Home/Projects/thumbnails/cyl.png';
+import examifai from '../assets/Home/Projects/thumbnails/examifai.png';
 import mecha_mayhem from '../assets/Home/Projects/thumbnails/mecha_mayhem.png';
+import robor from '../assets/Home/Projects/thumbnails/robor.png';
+import thispng from '../assets/Home/Projects/thumbnails/this.png';
+import monke from '../assets/Home/Projects/thumbnails/monke.png';
+import bp from '../assets/Home/Projects/thumbnails/bp.png';
 
 import project from '../assets/Home/Projects/projects.svg';
 //EXPORTS
@@ -61,6 +69,6 @@ export {
     Sine, who,
     halo,
     primary, additional, skills, skillstack, dont, quote, justin,
-    mecha_mayhem, project
+    cbx_capital_partners, churchill, cyl, examifai, mecha_mayhem, robor, thispng, monke, bp, project
 
 }
