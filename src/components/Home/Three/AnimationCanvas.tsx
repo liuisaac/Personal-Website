@@ -13,7 +13,7 @@ BoatWaves;
 
 //Styling
 import "../../../index.css";
-import { Test, Hero, Projects, About_Me } from "..";
+import { Hero, Projects, About_Me } from "..";
 import { useEffect, useRef, useState } from "react";
 
 const getWindowSize = () => {
