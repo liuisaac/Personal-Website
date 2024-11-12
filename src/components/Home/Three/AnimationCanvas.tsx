@@ -2,18 +2,16 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { PerspectiveCamera, Scroll, ScrollControls } from "@react-three/drei";
 
-import BoatWaves from "./BoatWaves";
+import WavePoints from "./WavePoints";
 import Background from "./Background";
 
-const Points = BoatWaves.Points;
-
+const Points = WavePoints;
 const Post = Background.Post;
 
-BoatWaves;
 
 //Styling
 import "../../../index.css";
-import { Hero, Projects, About_Me } from "..";
+import { Hero, Projects, About_Me, Skills } from "..";
 import { useEffect, useRef, useState } from "react";
 
 const getWindowSize = () => {
@@ -64,12 +62,14 @@ function AnimationCanvas() {
             className="pointer-events-none"
         >
             <Rig />
-            <ScrollControls pages={5.7} damping={smDetector() ? 0 : 0.3} distance={1}>
+            <ScrollControls pages={5.7} damping={smDetector() ? 0.1 : 0.2} distance={1} maxSpeed={smDetector() ? 0.2 : 1}>
                 <Scroll>
                     {/* Canvas Components */}
                     {/* <Floor /> */}
                     <Post />
                     <Points />
+                    <ambientLight />
+                    <directionalLight position={[20, 10, 0]} intensity={5}/>
                 </Scroll>
                 <Scroll html>
                     {/* <div className="w-screen h-[170vh]">
@@ -84,12 +84,10 @@ function AnimationCanvas() {
                         <About_Me v={vdim}/>
                     </div>
 
-                    {/* <div className="w-screen h-[90vh] bg-opacity-20">
+                    <div className="w-screen h-[90vh] bg-opacity-20">
                         <Skills />
                     </div>
-                    <div className="w-screen h-[80vh] bg-opacity-20">
-                        <References />
-                    </div> */}
+
                     <div className="w-screen h-[200vh] bg-opacity-20 bg-[#1C1B1D] z-50">
                         <Projects />
                     </div>

@@ -1,178 +1,184 @@
-import * as THREE from "three";
-import { useMemo, useCallback, useRef, useState } from "react";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { useFrame, useLoader } from "@react-three/fiber";
-// import { wavepoint } from "../../../assets";
-import "../../../index.css";
+// import * as THREE from "three";
+// import { useMemo, useCallback, useRef, useState } from "react";
+// import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+// import { useFrame, useLoader } from "@react-three/fiber";
+// // import { wavepoint } from "../../../assets";
+// import "../../../index.css";
 
-let t = 0; // time // controls the speed of the animation
-const f = 0.02; // frequency // HIGHER = higher frequency / faster bobbing, LOWER = loewr frequency / slower bobbing
-const rippleFactor = 0.07; // wave travel distance // HIGHER = less travel, LOWER = more travel
-// eslint-disable-next-line prefer-const
-let a = 3; // variable amplitude // isolated amplitude control
-const count = 25;
+// let t = 0; // time // controls the speed of the animation
+// const f = 0.06; // frequency // HIGHER = higher frequency / faster bobbing, LOWER = loewr frequency / slower bobbing
+// const rippleFactor = 0.07; // wave travel distance // HIGHER = less travel, LOWER = more travel
+// // eslint-disable-next-line prefer-const
+// let a = 1; // variable amplitude // isolated amplitude control
+// const count = 50;
 
-// const vertexShader = `
-//   precision mediump float; // Set precision to mediump
+// function Points() {
+//     // const imgTex = useLoader(THREE.TextureLoader, wavepoint);
+//     const positionBufferRef = useRef<THREE.BufferAttribute | null>();
+//     const scaleBufferRef = useRef<THREE.BufferAttribute | null>();
 
-//   attribute float scale;
-  
-//   void main() {
-//     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-    
-//     gl_PointSize = scale * (300.0 / -mvPosition.z);
-//     gl_Position = projectionMatrix * mvPosition;
-//   }
-// `;
+//     const graph = useCallback(
+//         (x: number) => {
+//             return Math.sin(f * (x - t)) * a;
+//         },
+//         [t, f, a]
+//     );
+//     const sep = 5;
 
-// const vertexShader = `
-//   void main() {
-//     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-//     gl_PointSize = 20.0; // Set a fixed size
-//     gl_Position = projectionMatrix * mvPosition;
-//   }
-// `;
+//     //loop
+//     let positions = useMemo(() => {
+//         let positions: number[] = [];
 
-// const fragmentShader = `
-//   precision mediump float; // Set precision to mediump
+//         for (let xi = 0; xi < count; xi++) {
+//             for (let zi = 0; zi < count; zi++) {
+//                 let x = sep * (xi - count / 2);
+//                 let z = sep * (zi - count / 2);
+//                 let y = graph(x);
+//                 positions.push(x, y, z);
+//             }
+//         }
 
-//   uniform vec3 color;
-  
-//   void main() {
-//     if (length(gl_PointCoord - vec2(0.5, 0.5)) > 0.475) discard;
-    
-//     gl_FragColor = vec4(color, 1.0);
-//   }
-// `;
+//         return new Float32Array(positions);
+//     }, [count, sep, graph]);
 
-function Points() {
-    // const imgTex = useLoader(THREE.TextureLoader, wavepoint);
-    const positionBufferRef = useRef<THREE.BufferAttribute | null>();
-    const scaleBufferRef = useRef<THREE.BufferAttribute | null>();
+//     let scal = useMemo(() => {
+//         let scal: number[] = [];
 
-    const graph = useCallback(
-        (x: number) => {
-            return Math.sin(f * (x - t)) * a;
-        },
-        [t, f, a]
-    );
-    const sep = 5;
+//         for (let xi = 0; xi < count; xi++) {
+//             for (let zi = 0; zi < count; zi++) {
+//                 scal.push(1);
+//             }
+//         }
 
-    //loop
-    let positions = useMemo(() => {
-        let positions: number[] = [];
+//         return new Float32Array(scal);
+//     }, [count, sep, graph]);
 
-        for (let xi = 0; xi < count; xi++) {
-            for (let zi = 0; zi < count; zi++) {
-                let x = sep * (xi - count / 2);
-                let z = sep * (zi - count / 2);
-                let y = graph(x);
-                positions.push(x, y, z);
-            }
-        }
+//     useFrame(() => {
+//         t += 0.5;
 
-        return new Float32Array(positions);
-    }, [count, sep, graph]);
+//         const positions = positionBufferRef.current?.array;
+//         const scal = scaleBufferRef.current?.array;
+//         // console.log(positions == null)
+//         if (positions && scal) {
+//             let i = 0;
+//             let s = 0;
+//             for (let xi = 0; xi < count; xi++) {
+//                 for (let zi = 0; zi < count; zi++) {
+//                     let x = sep * (xi - count / 2);
 
-    let scal = useMemo(() => {
-        let scal: number[] = [];
+//                     positions[i + 1] = graph(x);
+//                     scal[s] = (4 * positions[i + 1] + 1) / 2;
 
-        for (let xi = 0; xi < count; xi++) {
-            for (let zi = 0; zi < count; zi++) {
-                scal.push(1);
-            }
-        }
+//                     i += 3;
+//                     s++;
+//                 }
+//             }
+//         }
+//         if (positionBufferRef && positionBufferRef.current) {
+//             positionBufferRef.current.needsUpdate = true;
+//         }
+//         if (scaleBufferRef && scaleBufferRef.current) {
+//             scaleBufferRef.current.needsUpdate = true;
+//         }
 
-        return new Float32Array(scal);
-    }, [count, sep, graph]);
+//         // if (distance.offset > 0.3) {
+//         //     console.log("switch");
+//         // }
+//         //Camera control
+//         //state.camera.position.set(120, 10 - scroll.offset * 20, 10)
+//         // console.log(10-scroll.offset);
+//     });
 
-    useFrame(() => {
-        t += 1;
+//     return (
+//         <group>
+//             {/* Stars */}
+//             {/* <Stars
+//                 radius={100}
+//                 depth={102}
+//                 count={500}
+//                 factor={4}
+//                 saturation={0}
+//                 fade
+//                 speed={2}
+//             /> */}
 
-        const positions = positionBufferRef.current?.array;
-        const scal = scaleBufferRef.current?.array;
-        // console.log(positions == null)
-        if (positions && scal) {
-            let i = 0;
-            let s = 0;
-            for (let xi = 0; xi < count; xi++) {
-                for (let zi = 0; zi < count; zi++) {
-                    let x = sep * (xi - count / 2);
+//             {/* wavePoints */}
+//             <points>
+//                 <bufferGeometry attach={"geometry"}>
+//                     <bufferAttribute
+//                         ref={
+//                             positionBufferRef as React.MutableRefObject<THREE.BufferAttribute>
+//                         }
+//                         attach={"attributes-position"}
+//                         array={positions}
+//                         count={positions.length / 3}
+//                         itemSize={3}
+//                     />
+//                     <bufferAttribute
+//                         ref={
+//                             scaleBufferRef as React.MutableRefObject<THREE.BufferAttribute>
+//                         }
+//                         attach={"attributes-scale"}
+//                         array={scal}
+//                         count={scal.length}
+//                         itemSize={1}
+//                     />
+//                 </bufferGeometry>
+//                 <shaderMaterial
+//                     attach="material"
+//                     uniforms={{
+//                         color: { value: new THREE.Color(0x000000) },
+//                         // map: { value: imgTex },
+//                     }}
+//                     // vertexShader={vertexShader}
+//                     // fragmentShader={fragmentShader}
+//                 />
+//                 <pointsMaterial attach="material" />
+//             </points>
+//         </group>
+//     );
+// }
 
-                    positions[i + 1] = graph(x);
-                    scal[s] = (4 * positions[i + 1] + 1) / 2;
+// // function Boat({ path }: { path: string }) {
+// //     const [boatHeight, setBoatHeight] = useState(0);
+// //     const gltf = useLoader(GLTFLoader, path);
 
-                    i += 3;
-                    s++;
-                }
-            }
-        }
-        if (positionBufferRef && positionBufferRef.current) {
-            positionBufferRef.current.needsUpdate = true;
-        }
-        if (scaleBufferRef && scaleBufferRef.current) {
-            scaleBufferRef.current.needsUpdate = true;
-        }
+// //     const graph = useCallback(
+// //         (x: number, z: number) => {
+// //             const circle = x ** 2 + z ** 2;
+// //             return (
+// //                 Math.sin(f * (circle - t)) *
+// //                 1 *
+// //                 rippleFactor *
+// //                 ((1 / rippleFactor) * Math.E ** (-circle * f * rippleFactor))
+// //             );
+// //         },
+// //         [t, f, a]
+// //     );
 
-        // if (distance.offset > 0.3) {
-        //     console.log("switch");
-        // }
-        //Camera control
-        //state.camera.position.set(120, 10 - scroll.offset * 20, 10)
-        // console.log(10-scroll.offset);
-    });
+// //     useFrame(() => {
+// //         setBoatHeight(graph(0, 0) - (1 + a / 2));
+// //         //6.28
+// //         //3.54318885548 <- integralConst
+// //     });
+// //     return (
+// //         <group position={[0, boatHeight, 0]} >
+// //             <primitive object={gltf.scene}  position={[-20, 0.5, -50]} scale={0.7} rotation={[0, Math.sin(boatHeight / 8), Math.sin(boatHeight / 16)]}/>
+// //         </group>
+// //     );
+// // }
 
-    return (
-        <group>
-            {/* Stars */}
-            {/* <Stars
-                radius={100}
-                depth={102}
-                count={500}
-                factor={4}
-                saturation={0}
-                fade
-                speed={2}
-            /> */}
+// // function City({ path }: { path: string }) {
+// //     const gltf = useLoader(GLTFLoader, path);
 
-            {/* wavePoints */}
-            <points>
-                <bufferGeometry attach={"geometry"}>
-                    <bufferAttribute
-                        ref={
-                            positionBufferRef as React.MutableRefObject<THREE.BufferAttribute>
-                        }
-                        attach={"attributes-position"}
-                        array={positions}
-                        count={positions.length / 3}
-                        itemSize={3}
-                    />
-                    <bufferAttribute
-                        ref={
-                            scaleBufferRef as React.MutableRefObject<THREE.BufferAttribute>
-                        }
-                        attach={"attributes-scale"}
-                        array={scal}
-                        count={scal.length}
-                        itemSize={1}
-                    />
-                </bufferGeometry>
-                {/* <shaderMaterial
-                    attach="material"
-                    uniforms={{
-                        color: { value: new THREE.Color(0xffffff) },
-                        // map: { value: imgTex },
-                    }}
-                    vertexShader={vertexShader}
-                    fragmentShader={fragmentShader}
-                /> */}
-                <pointsMaterial attach="material" />
-            </points>
-        </group>
-    );
-}
+// //     return (
+// //         <group position={[0, 10, 0]} rotation={[0, 0, 0]}>
+// //             <primitive object={gltf.scene} />
+// //         </group>
+// //     );
+// // }
 
-// function Boat({ path }: { path: string }) {
+// function City({ path }: { path: string }) {
 //     const [boatHeight, setBoatHeight] = useState(0);
 //     const gltf = useLoader(GLTFLoader, path);
 
@@ -181,7 +187,7 @@ function Points() {
 //             const circle = x ** 2 + z ** 2;
 //             return (
 //                 Math.sin(f * (circle - t)) *
-//                 1.5 *
+//                 0.8 *
 //                 rippleFactor *
 //                 ((1 / rippleFactor) * Math.E ** (-circle * f * rippleFactor))
 //             );
@@ -195,49 +201,10 @@ function Points() {
 //         //3.54318885548 <- integralConst
 //     });
 //     return (
-//         <group position={[0, boatHeight, 0]} rotation={[0, 0, 0]}>
+//         <group position={[700, boatHeight + 20, 700]} rotation={[0, 0, 0]}>
 //             <primitive object={gltf.scene} />
 //         </group>
 //     );
 // }
 
-// function City({ path }: { path: string }) {
-//     const gltf = useLoader(GLTFLoader, path);
-
-//     return (
-//         <group position={[0, 10, 0]} rotation={[0, 0, 0]}>
-//             <primitive object={gltf.scene} />
-//         </group>
-//     );
-// }
-
-function City({ path }: { path: string }) {
-    const [boatHeight, setBoatHeight] = useState(0);
-    const gltf = useLoader(GLTFLoader, path);
-
-    const graph = useCallback(
-        (x: number, z: number) => {
-            const circle = x ** 2 + z ** 2;
-            return (
-                Math.sin(f * (circle - t)) *
-                0.8 *
-                rippleFactor *
-                ((1 / rippleFactor) * Math.E ** (-circle * f * rippleFactor))
-            );
-        },
-        [t, f, a]
-    );
-
-    useFrame(() => {
-        setBoatHeight(graph(0, 0) - (1 + a / 2));
-        //6.28
-        //3.54318885548 <- integralConst
-    });
-    return (
-        <group position={[0, boatHeight + 15, 0]} rotation={[0, 0, 0]}>
-            <primitive object={gltf.scene} />
-        </group>
-    );
-}
-
-export default { Points, City };
+// export default { Points, City };

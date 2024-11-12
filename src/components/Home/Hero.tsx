@@ -1,6 +1,6 @@
 //Styling
 import "../../index.css";
-import { isaac_liu, prename, signature, chevron } from "../../assets";
+import { isaac_liu, signature, chevron } from "../../assets";
 import { useEffect, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useScroll } from "@react-three/drei";
@@ -45,11 +45,11 @@ const Hero = () => {
             >
                 <div className="flex flex-row justify-center items-center w-full h-[8vh] sm:mt-[30vh] mt-[40vh] sm:mb-[7.5vh]">
                     <div>
-                        <img src={prename} className="z-30 px-[30vw]" />
+                        {/* <img src={prename} className="z-30 px-[30vw]" /> */}
                     </div>
                 </div>
                 {/* Name */}
-                <div className="flex flex-col justify-center items-center w-full pointer-events-none">
+                <div className="flex flex-col justify-center items-center w-full pointer-events-none -mt-[2vh]">
                     <img
                         src={isaac_liu}
                         className="relative z-20 sm:w-3/5 w-[80vw]"

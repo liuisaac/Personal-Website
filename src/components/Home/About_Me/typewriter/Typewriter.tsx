@@ -5,9 +5,10 @@ import CursorBlinker from "./CursorBlinker";
 export default function Typewriter() {
     const textIndex = useMotionValue(0);
     const texts = [
-        " /software developer/ with a foothold in mathematics.",
-        " undergrad student at the /University of British Columbia/.",
-        " /tech enthusiast, builder, and maker/.",
+        "I make /mobile apps, websites, and general software projects/.",
+        "I'm based in /Calgary, Alberta/ in Canada.",
+        "I'm an undergrad student at the /University of British Columbia/.",
+        "In my free time, I enjoy doing /puzzle hunts and hackathons/."
     ];
 
     const baseText = useTransform(textIndex, (latest) => texts[latest] || "");
@@ -63,9 +64,6 @@ export default function Typewriter() {
 
     return (
         <>
-            <motion.span className="inline text-[#3EFFDC]">
-                {`I'm a`}
-            </motion.span>
             <motion.span className="inline text-[#3EFFDC]">
                 {displayText}
             </motion.span>
